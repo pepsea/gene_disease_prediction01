@@ -24,6 +24,16 @@ Score for real:
         --disease "Cystic fibrosis" --genes CFTR HBB GPR52 GPR56 APOE \
         --out result.jsonl
 
+With a local Ollama. Note that Ollama runs stage 2 only - it returns logprobs
+for tokens it GENERATES, and cannot score a symbol you supply, so stage 1 is
+unavailable. Use --backend llamacpp on the same downloaded weights for the
+full pipeline:
+
+    python rank.py --backend ollama   --model gemma3:27b --disease "..." --genes ...
+    python rank.py --backend llamacpp --model gemma3:27b --disease "..." --genes ...
+
+`check_backend.py` reports what a given backend can actually do.
+
 Files still work, and mix freely with inline variables:
 
     python rank.py --model <model-id> \
@@ -37,6 +47,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from backends import (ScoringUnsupported, discover_ollama_host,  # noqa: E402
+                      make_backend)
 from prompts import (DISEASE_TMPL, NEUTRAL_TMPL, LABELS, NONE_OPT,  # noqa: E402
                      build_mcq_rounds, build_pmi_pairs, clean_genes,
                      plan_stages)
@@ -73,44 +85,55 @@ def preview(disease, genes, top_k=None, group_size=4, rotations=4,
 
 
 class GeneRanker:
-    """Holds the model and the reusable neutral scores across diseases.
+    """Holds the backend and the reusable neutral scores across diseases.
 
     Build one and call rank() per disease. The neutral term does not depend on
     the disease, so it is computed once per gene set and reused: for 1000 genes
     over 200 diseases that is 201,000 forward passes instead of 400,000.
+
+    `backend` selects where the numbers come from:
+
+        "transformers"  full pipeline, unquantized weights
+        "llamacpp"      full pipeline, GGUF - including the file Ollama already
+                        downloaded (pass the Ollama model name)
+        "ollama"        stage 2 only; Ollama cannot score a supplied symbol
+
+    With a backend that cannot score, stage 1 is dropped and stage 2 runs over
+    every candidate. That still never generates a gene symbol, but nothing is
+    then correcting corpus-frequency bias, so the result carries a warning and
+    the frequency-only control in evaluate.py becomes the check that matters.
+    Pass strict=True to raise instead of degrading.
     """
 
-    def __init__(self, model, dtype="bfloat16", batch_size=32, hgnc=None,
-                 disease_tmpl=DISEASE_TMPL, neutral_tmpl=NEUTRAL_TMPL):
+    def __init__(self, model, backend="transformers", dtype="bfloat16",
+                 batch_size=32, hgnc=None, disease_tmpl=DISEASE_TMPL,
+                 neutral_tmpl=NEUTRAL_TMPL, strict=False, **backend_kwargs):
         self.model_id = model
+        self.backend_name = backend
+        self.backend_kwargs = backend_kwargs
         self.dtype = dtype
         self.batch_size = batch_size
+        self.strict = strict
         self.disease_tmpl = disease_tmpl
         self.neutral_tmpl = neutral_tmpl
-        self._pmi_scorer = None
-        self._label_scorer = None
+        self.backend = None
         self._neutral = {}
+        self._warned = False
         self.approved = self.alias_to = None
         if hgnc:
             self.approved, self.alias_to = _load_hgnc(hgnc)
 
-    # Both scorers load the same weights twice if used naively. Share one.
     def _load(self):
-        if self._pmi_scorer is not None:
-            return
-        from score_pmi import Scorer
-        from score_labels import LabelScorer
-        self._pmi_scorer = Scorer(self.model_id, dtype=self.dtype)
-        self._label_scorer = LabelScorer.__new__(LabelScorer)
-        self._label_scorer.tok = self._pmi_scorer.tok
-        self._label_scorer.model = self._pmi_scorer.model
-        ids = [self._label_scorer.tok.encode(" " + lab,
-                                             add_special_tokens=False)[-1]
-               for lab in LABELS]
-        if len(set(ids)) != len(LABELS):
-            raise SystemExit("Label tokens collide for this tokenizer. Run "
-                             "check_tokenizer.py and pick different labels.")
-        self._label_scorer.label_ids = ids
+        if self.backend is None:
+            kw = dict(self.backend_kwargs)
+            if self.backend_name == "transformers":
+                kw.setdefault("dtype", self.dtype)
+            self.backend = make_backend(self.model_id, self.backend_name, **kw)
+        return self.backend
+
+    @property
+    def supports_pmi(self):
+        return self._load().supports_pmi
 
     def neutral_scores(self, genes, cache_path=None):
         key = tuple(genes)
@@ -122,14 +145,35 @@ class GeneRanker:
             if list(z["genes"]) == list(genes) and str(z["model"]) == self.model_id:
                 self._neutral[key] = z["scores"]
                 return self._neutral[key]
-        self._load()
-        scores = self._pmi_scorer.score(self.neutral_tmpl, list(genes),
-                                        self.batch_size)
+        scores = self._load().score_continuations(self.neutral_tmpl, list(genes),
+                                                  self.batch_size)
         if cache_path:
             np.savez(cache_path, genes=np.array(list(genes), dtype=object),
                      scores=scores, model=self.model_id)
         self._neutral[key] = scores
         return scores
+
+    def _resolve_plan(self, genes, top_k, backend):
+        """Apply the candidate-count table, then what the backend can do."""
+        plan = plan_stages(len(genes), top_k)
+        warnings = []
+        if "pmi" in plan["stages"] and not backend.supports_pmi:
+            msg = (f"backend '{backend.name}' cannot score a supplied gene "
+                   f"symbol, so stage 1 (PMI) is unavailable. Running stage 2 "
+                   f"over all {len(genes)} candidates instead. Nothing is "
+                   f"correcting corpus-frequency bias in this mode: check the "
+                   f"frequency-only control before trusting the ranking, and "
+                   f"prefer backend='llamacpp' for the full pipeline.")
+            if self.strict:
+                raise ScoringUnsupported(msg)
+            warnings.append(msg)
+            if not self._warned:
+                print("WARNING: " + msg)
+                self._warned = True
+            plan = {"stages": ["labels"], "shortlist": len(genes),
+                    "reason": f"{len(genes)} candidates, but backend "
+                              f"'{backend.name}' cannot score supplied symbols"}
+        return plan, warnings
 
     def rank(self, disease, genes, top_k=None, group_size=4, rotations=4,
              margin_threshold=0.5, fewshot=True, neutral_cache=None):
@@ -143,16 +187,16 @@ class GeneRanker:
         import numpy as np
 
         genes, report = clean_genes(genes, self.approved, self.alias_to)
-        plan = plan_stages(len(genes), top_k)
-        self._load()
+        backend = self._load()
+        plan, warnings = self._resolve_plan(genes, top_k, backend)
 
         stage1 = None
         shortlist = genes
         if "pmi" in plan["stages"]:
             pairs = build_pmi_pairs(disease, genes, self.disease_tmpl,
                                     self.neutral_tmpl)
-            cond = self._pmi_scorer.score(pairs["conditional_prefix"], genes,
-                                          self.batch_size)
+            cond = backend.score_continuations(pairs["conditional_prefix"],
+                                               genes, self.batch_size)
             neutral = self.neutral_scores(genes, neutral_cache)
             pmi = cond - neutral
             order = np.argsort(-pmi)
@@ -164,14 +208,22 @@ class GeneRanker:
 
         rounds = build_mcq_rounds(disease, shortlist, group_size, rotations,
                                   fewshot)
-        per_gene, round_winners = {}, []
+        per_gene, round_winners, missing = {}, [], set()
         for rnd in rounds:
-            s = self._label_scorer.score(rnd["prompt"])
+            s = backend.label_logprobs(rnd["prompt"], LABELS)
+            # A backend that reports only its top-k may not mention every
+            # label. Floor those rather than inventing a competitive score.
+            seen = [v for v in s.values() if v is not None]
+            floor = (min(seen) - 10.0) if seen else -100.0
             best, best_lp = None, None
             for lab, opt in zip(LABELS, rnd["options"]):
-                per_gene.setdefault(opt, []).append(s[lab])
-                if best_lp is None or s[lab] > best_lp:
-                    best, best_lp = opt, s[lab]
+                v = s.get(lab)
+                if v is None:
+                    missing.add(lab)
+                    v = floor
+                per_gene.setdefault(opt, []).append(v)
+                if best_lp is None or v > best_lp:
+                    best, best_lp = opt, v
             round_winners.append(best)
 
         scores = {g: float(np.mean(v)) for g, v in per_gene.items()}
@@ -200,11 +252,19 @@ class GeneRanker:
         else:
             call, reason = top1, None
 
+        if missing:
+            warnings.append(
+                f"labels {sorted(missing)} were absent from the backend's "
+                f"top-{getattr(backend, 'top_logprobs', 'k')} at least once and "
+                f"were floored; raise top_logprobs if this is frequent")
+
         return {
             "disease": disease,
             "model": self.model_id,
+            "backend": backend.name,
             "n_candidates": len(genes),
             "plan": plan,
+            "warnings": warnings,
             "normalization": report,
             "stage1": stage1,
             "shortlist": shortlist,
@@ -223,12 +283,13 @@ class GeneRanker:
         return [self.rank(d, genes, **kw) for d in diseases]
 
 
-def rank_genes(disease, genes, model, **kw):
+def rank_genes(disease, genes, model, backend="transformers", **kw):
     """One-shot convenience. Loads the model per call, so prefer GeneRanker
     when ranking more than one disease."""
-    ctor = {k: kw.pop(k) for k in ("dtype", "batch_size", "hgnc")
+    ctor = {k: kw.pop(k) for k in ("dtype", "batch_size", "hgnc", "strict",
+                                   "host", "n_ctx", "n_gpu_layers")
             if k in kw}
-    return GeneRanker(model, **ctor).rank(disease, genes, **kw)
+    return GeneRanker(model, backend=backend, **ctor).rank(disease, genes, **kw)
 
 
 def main():
@@ -236,6 +297,14 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=__doc__)
     ap.add_argument("--model", help="required unless --dry-run")
+    ap.add_argument("--backend", default="transformers",
+                    choices=["transformers", "ollama", "llamacpp"],
+                    help="where scores come from. ollama = stage 2 only")
+    ap.add_argument("--host", default=None,
+                    help="Ollama host (default http://localhost:11434)")
+    ap.add_argument("--strict", action="store_true",
+                    help="fail instead of degrading when the backend cannot "
+                         "run stage 1")
     ap.add_argument("--disease", action="append", default=[],
                     help="disease name; repeat for several")
     ap.add_argument("--diseases-file")
@@ -304,8 +373,24 @@ def main():
     if not args.model:
         ap.error("--model is required unless --dry-run")
 
-    ranker = GeneRanker(args.model, dtype=args.dtype,
-                        batch_size=args.batch_size, hgnc=args.hgnc)
+    extra = {}
+    if args.backend == "ollama":
+        host = args.host
+        if not host:
+            # localhost is the wrong side of the network when either end is in
+            # Docker, so probe the usual hosts rather than assuming.
+            host = discover_ollama_host()
+            if host:
+                print(f"Ollama found at {host}")
+            else:
+                ap.error("no Ollama found on the usual hosts "
+                         "(localhost, host.docker.internal, 172.17.0.1). "
+                         "Pass --host, or run check_backend.py --backend ollama "
+                         "for a diagnosis.")
+        extra["host"] = host
+    ranker = GeneRanker(args.model, backend=args.backend, dtype=args.dtype,
+                        batch_size=args.batch_size, hgnc=args.hgnc,
+                        strict=args.strict, **extra)
     results = []
     for d in diseases:
         r = ranker.rank(d, genes, top_k=args.top_k,

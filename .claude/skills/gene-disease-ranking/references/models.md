@@ -58,7 +58,17 @@ forward pass and needs no generation server. vLLM and SGLang help when you need
 throughput across many diseases, but add setup cost; start with transformers and
 move only if scoring time becomes the bottleneck.
 
-For quantized local runs, llama.cpp / Ollama / LM Studio all work, but confirm
-the runtime exposes per-token logprobs before depending on it. Some quantized
-serving paths return only generated text, which breaks both stages of this
-pipeline.
+For quantized local runs, confirm what the runtime can do before depending on
+it. Checked in September 2026:
+
+- **Ollama** exposes `logprobs` / `top_logprobs` (v0.12.11+) for tokens it
+  *generates*, which covers stage 2. It has no `echo` and no scoring endpoint,
+  so stage 1 is not possible through it. Ollama Cloud has been reported to
+  return null logprobs even when asked.
+- **llama.cpp** via `llama-cpp-python` does both: construct with
+  `logits_all=True` and call `create_completion(..., echo=True, logprobs=N,
+  max_tokens=0)` to score a supplied sequence. Passing token ids rather than
+  text keeps the prefix/target boundary exact.
+
+`scripts/check_backend.py` probes a live runtime instead of trusting this note,
+which is the right habit — these APIs move quickly.

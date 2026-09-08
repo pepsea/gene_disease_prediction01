@@ -151,6 +151,66 @@ cheapest accuracy gain available. Prefer abstaining to guessing — a pipeline t
 says "no confident call" on 30% of diseases is more useful than one that is
 confidently wrong.
 
+## Backends — can the runtime score, or only generate?
+
+This is the question that decides whether the pipeline is possible at all, and
+it is worth answering before writing anything else. The two stages ask for
+different things:
+
+- Stage 2 needs generation with logprobs. Most runtimes have it.
+- Stage 1 needs the log probability of a string you **supply** — teacher
+  forcing, not generation. Several local runtimes cannot do this.
+
+| Backend | Stage 1 | Stage 2 | Notes |
+|---|---|---|---|
+| `transformers` | yes | yes | reference implementation |
+| `llamacpp` | yes | yes | GGUF; reads the file Ollama already downloaded |
+| **`ollama`** | **no** | yes | see below |
+
+**Ollama cannot run stage 1.** Its `logprobs` / `top_logprobs` (v0.12.11+) cover
+tokens the model *generates*. There is no `echo` option and no scoring endpoint,
+so the probability of a supplied symbol cannot be read out. Verify rather than
+assume — `scripts/check_backend.py` probes a running server and reports exactly
+which stages are available:
+
+```bash
+python scripts/check_backend.py --backend ollama --model gemma3:27b
+```
+
+Stage 2 alone still never generates a symbol, so it is a legitimate degraded
+mode, and `rank.py` falls back to it with a warning rather than failing. But
+nothing is then subtracting corpus frequency, which is the whole job of the PMI
+stage — so treat the frequency-only control as the check that decides whether
+the result means anything, and say so in the write-up.
+
+The better answer is usually `llamacpp` on the same weights. Ollama keeps its
+GGUF blobs on disk and `resolve_ollama_gguf()` finds them from the model name,
+so nothing is downloaded twice:
+
+```bash
+pip install llama-cpp-python
+python scripts/rank.py --backend llamacpp --model gemma3:27b --disease "..." --genes ...
+```
+
+### Ollama in Docker
+
+Two things change, and the second one bites.
+
+**Connecting.** With `-p 11434:11434` the host reaches it at
+`http://localhost:11434`. If the *caller* is also containerised, `localhost` is
+that container — use `host.docker.internal` (Docker Desktop) or `172.17.0.1`
+(Linux bridge). `discover_ollama_host()` tries all of these, and `rank.py` calls
+it when `--host` is omitted.
+
+**Reading the weights.** With the commonly recommended named volume
+(`-v ollama:/root/.ollama`) the GGUF is not plainly on the host: on Linux it
+sits under `/var/lib/docker/volumes/` and usually needs root; on Docker Desktop
+it is inside a VM and is not on the host at all. So the `llamacpp` shortcut
+above stops working. Either bind-mount instead (`-v ~/.ollama:/root/.ollama`,
+restart, nothing duplicated) or `docker cp` the blob out, which costs a second
+copy — around 17GB for a 27B Q4. `check_backend.py` detects the situation and
+prints the exact `docker cp` line with the right container and digest.
+
 ## Stage 3 — evidence gate
 
 An LLM score is a prior, not evidence. Before anything reaches the user:
@@ -250,6 +310,8 @@ trusting the notes, since terms change.
 ## Reference files
 
 - `scripts/rank.py` — entry point taking disease and gene list as variables
+- `scripts/backends.py` — transformers / llama.cpp / Ollama, and what each can do
+- `scripts/check_backend.py` — probe a runtime before building on it
 - `scripts/prompts.py` — the one place a gene list becomes prompt text
 - `references/models.md` — model comparison, licenses, VRAM, tokenizer notes
 - `references/scoring.md` — PMI derivation, calibration, length normalization, batching

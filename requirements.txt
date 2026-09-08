@@ -4,6 +4,11 @@ numpy>=1.24
 torch>=2.1
 transformers>=4.44
 
+# バックエンド（どれか 1 つ）
+#   ollama       追加パッケージ不要（stdlib の HTTP のみ）。ただし段階 1 は動かない
+#   llamacpp     pip install llama-cpp-python   ← Ollama の GGUF をそのまま読める
+#   transformers 上の torch / transformers
+
 # Notebook (optional): notebooks/gene_disease_ranking.ipynb
 # jupyterlab
 # pandas       # あれば結果を表で表示、無ければテキストで代替

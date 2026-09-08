@@ -75,10 +75,27 @@ class FakeLabels:
         return {lab: self.pref.get(opts.get(lab, ""), -3.0) for lab in LABELS}
 
 
+class FakeBackend:
+    """Stands in for a real backend: scores supplied strings and labels."""
+
+    name = "fake"
+    supports_pmi = True
+
+    def __init__(self, affinity, freq, pref):
+        self._pmi = FakePMI(affinity, freq)
+        self._labels = FakeLabels(pref)
+
+    def score_continuations(self, prefix, targets, batch_size=32):
+        return self._pmi.score(prefix, targets, batch_size)
+
+    def label_logprobs(self, prompt, labels):
+        s = self._labels.score(prompt)
+        return {lab: s.get(lab) for lab in labels}
+
+
 def ranker(affinity, freq, pref):
     r = GeneRanker("fake/model")
-    r._pmi_scorer = FakePMI(affinity, freq)
-    r._label_scorer = FakeLabels(pref)
+    r.backend = FakeBackend(affinity, freq, pref)
     return r
 
 
@@ -130,6 +147,7 @@ def test_pmi_cancels_frequency():
     assert len(r["shortlist"]) == 10
     assert r["call"] == "CFTR"
     assert r["ranked"][0]["gene"] == "CFTR"   # evaluate.py reads this key
+    assert r["backend"] == "fake" and r["warnings"] == []
 
 
 def test_no_gene_dropped():

@@ -69,11 +69,74 @@ jupyter lab notebooks/gene_disease_ranking.ipynb
 torch も GPU も要りません。まずここを見て、遺伝子記号がモデルの出力側に無いことを
 確かめてから GPU のある環境へ持っていくのが安全です。
 
+## バックエンド ─ ローカルの Ollama を使う場合
+
+**先に結論。Ollama では段階 1（PMI）が動きません。**
+
+このパイプラインはモデルに 2 つの違うことを頼みます。
+
+| | 何を頼むか | どこで使うか | 難易度 |
+|---|---|---|---|
+| A | **こちらが渡した文字列**の確率 | 段階 1（PMI） | 対応していない実行環境がある |
+| B | 次の 1 文字（A〜E）の確率 | 段階 2 | だいたいどこでもできる |
+
+Ollama の `logprobs` / `top_logprobs`（v0.12.11 以降）は **モデルが生成した**
+トークンの確率です。OpenAI の `echo` に相当する機能も採点用エンドポイントも無いため、
+こちらが渡した `GPR52` という文字列の確率を読み出せません。
+
+| バックエンド | 段階 1 | 段階 2 | 備考 |
+|---|---|---|---|
+| `transformers` | ○ | ○ | 基準となる実装 |
+| `llamacpp` | ○ | ○ | GGUF。**Ollama が持っている重みをそのまま読める** |
+| `ollama` | **×** | ○ | 渡した記号を採点できない |
+
+まず実機で確認してください（推測しないこと）：
+
+```bash
+python .claude/skills/gene-disease-ranking/scripts/check_backend.py \
+  --backend ollama --model gemma3:27b
+```
+
+### 推奨：同じ重みを llama.cpp で読む
+
+Ollama は GGUF を `~/.ollama/models/blobs/` に置いています。llama.cpp から同じ
+ファイルを指せば、**再ダウンロードなしで**段階 1 も動きます。
+
+```bash
+pip install llama-cpp-python
+python .claude/skills/gene-disease-ranking/scripts/rank.py \
+  --backend llamacpp --model gemma3:27b --disease "Cystic fibrosis" --genes CFTR HBB GPR52
+```
+
+`ollama` のまま進めることもできます。その場合は段階 2 だけを全候補に回します。
+遺伝子記号を生成しない点は保たれますが、**出現頻度の偏りを打ち消すものが無くなります**。
+警告が出るので、「頻度のみ」対照で必ず確認してください。
+
+### Docker で動かしている場合
+
+**接続**：`-p 11434:11434` で公開されていれば `http://localhost:11434` で届きます。
+このコードは localhost → `host.docker.internal` → `172.17.0.1` の順に自動で探します
+（呼び出す側もコンテナ内だと `localhost` は自分自身を指すため）。
+
+**重みの読み出し**：ここが Docker 特有の問題です。よく推奨される名前付きボリューム
+（`-v ollama:/root/.ollama`）だと、GGUF はホストから素直には見えません
+（Linux では root 権限が必要、Docker Desktop では VM の中で**ホストからは見えない**）。
+つまり上の「llama.cpp で同じ重みを読む」が成立しません。
+
+| | 方法 | 代償 |
+|---|---|---|
+| 1 | `-v ~/.ollama:/root/.ollama` でバインドマウントし直す | 再起動のみ。**複製なし**。基本はこちら |
+| 2 | `docker cp` でコピー | ディスク二重使用（27B の Q4 で約 17GB） |
+
+`check_backend.py` がコンテナ名と digest を調べて、そのまま実行できる
+`docker cp` のコマンドを表示します。
+
 ## パイプライン
 
 | 段階 | 内容 | スクリプト |
 |---|---|---|
 | — | 疾患名と遺伝子リストを受け取り、以下を自動で実行 | `rank.py` |
+| — | 実行環境が何をできるか確認（最初にこれ） | `check_backend.py` |
 | 0 | HGNC で記号を正規化（別名 → 承認記号、非遺伝子は除去） | `normalize_genes.py` |
 | 1 | PMI スコアリング（候補を強制継続で採点し、疾患なしの対照を引く） | `score_pmi.py` |
 | 2 | 上位 10〜20 件を A〜E ラベルの選択式で再ランキング | `score_labels.py` |
@@ -111,10 +174,14 @@ python scripts/check_tokenizer.py --model <model-id> --genes GPR52 GPR56 HBB HBA
 
 ```bash
 python .claude/skills/gene-disease-ranking/tests/test_offline.py
+python .claude/skills/gene-disease-ranking/tests/test_backends.py
 ```
 
 静かに壊れやすい箇所を押さえてある：プロンプト構築、PMI による頻度補正、
 棄却（abstain）判定、そして段階 2 で遺伝子が黙って落ちる 2 つの経路。
+
+`test_backends.py` は偽の Ollama サーバを実際のソケットで立てて、HTTP の
+リクエスト形状・応答の解釈・ラベル欠落・Docker 経路の診断まで通します。
 
 ## ライセンス上の注意
 
