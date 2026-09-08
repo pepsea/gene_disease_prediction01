@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Run outputs / caches (regenerable)
+*.npz
+stage1*.jsonl
+stage2*.jsonl
+neutral*.npz
+
+# Local database dumps (large, licence-bound — do not commit)
+data/
+hgnc_complete_set*.txt

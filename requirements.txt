@@ -1,0 +1,5 @@
+# Scoring scripts. transformers/torch are only needed for the two model-based
+# stages; evaluate.py and normalize_genes.py run with numpy alone.
+numpy>=1.24
+torch>=2.1
+transformers>=4.44

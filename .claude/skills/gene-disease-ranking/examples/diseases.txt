@@ -1,0 +1,5 @@
+# one disease per line
+Huntington disease
+Cystic fibrosis
+Sickle cell disease
+Alzheimer disease

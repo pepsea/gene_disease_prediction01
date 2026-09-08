@@ -1,0 +1,15 @@
+# Sibling-heavy on purpose: this is the adversarial case the pipeline must survive.
+GPR52
+GPR55
+GPR56
+GPR35
+HTT
+CFTR
+HBB
+HBA1
+HBA2
+APOE
+APOC1
+TP53
+SLC6A4
+SLC6A3
