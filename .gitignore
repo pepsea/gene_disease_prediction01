@@ -8,6 +8,9 @@ venv/
 *.npz
 stage1*.jsonl
 stage2*.jsonl
+stage_results.jsonl
+gene_scores*.csv
+gene_scores*.jsonl
 neutral*.npz
 
 # Local database dumps (large, licence-bound — do not commit)

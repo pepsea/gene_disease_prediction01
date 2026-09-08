@@ -55,19 +55,32 @@ python scripts/rank.py --model <model-id> \
 複数疾患を同じ遺伝子リストで回すときは `GeneRanker` を 1 つ使い回す。
 疾患に依存しない中和項（neutral）を 1 回だけ計算して再利用するため。
 
-## ノートブックから使う
+## ノートブック
 
-上から順に実行するだけの版：[`notebooks/gene_disease_ranking.ipynb`](notebooks/gene_disease_ranking.ipynb)
+用途の違う 2 つがあります。
+
+| ファイル | 用途 |
+|---|---|
+| [`notebooks/score_genes.ipynb`](notebooks/score_genes.ipynb) | **使うためのもの。** 疾患名と遺伝子リストを入れて点数を出す |
+| [`notebooks/gene_disease_ranking.ipynb`](notebooks/gene_disease_ranking.ipynb) | 仕組みの説明、プロンプトの確認、評価と対照実験 |
 
 ```bash
 pip install jupyterlab
-jupyter lab notebooks/gene_disease_ranking.ipynb
+jupyter lab notebooks/score_genes.ipynb
 ```
 
-編集するのは「1. 入力」のセルだけ（`DISEASE` / `GENES` / `MODEL`）。
+### score_genes.ipynb（スコアリング）
+
+編集するのは「1. 入力」セルだけ（`DISEASE` / `GENES` / `BACKEND` / `MODEL`）。
+上から実行すると、全遺伝子の点数表・判定・CSV 保存まで出ます。
+`score(疾患名, 遺伝子リスト)` として何度でも呼べます。
+
+### gene_disease_ranking.ipynb（解説と評価）
+
 `MODEL = None` のままでも 3 章まで動き、**実際にモデルへ送られるプロンプトを目で確認できます**。
 torch も GPU も要りません。まずここを見て、遺伝子記号がモデルの出力側に無いことを
 確かめてから GPU のある環境へ持っていくのが安全です。
+対照実験（ランダム／頻度のみ／疾患シャッフル）も 8 章にあります。
 
 ## バックエンド ─ ローカルの Ollama を使う場合
 
