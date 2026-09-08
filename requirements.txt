@@ -3,3 +3,7 @@
 numpy>=1.24
 torch>=2.1
 transformers>=4.44
+
+# Notebook (optional): notebooks/gene_disease_ranking.ipynb
+# jupyterlab
+# pandas       # あれば結果を表で表示、無ければテキストで代替

@@ -74,6 +74,10 @@ Ranking several diseases against the same gene list should reuse one
 `GeneRanker`: the neutral term is disease-independent, so `rank_many` computes
 it once rather than once per disease.
 
+A notebook walking the same path top to bottom, with the prompt inspection
+reachable before any model is loaded, is at `notebooks/gene_disease_ranking.ipynb`
+in this repository.
+
 ## Stage 1 — PMI scoring (the workhorse)
 
 Score each candidate independently by forced-teacher log-likelihood. Because the

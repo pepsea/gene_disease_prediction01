@@ -55,6 +55,20 @@ python scripts/rank.py --model <model-id> \
 複数疾患を同じ遺伝子リストで回すときは `GeneRanker` を 1 つ使い回す。
 疾患に依存しない中和項（neutral）を 1 回だけ計算して再利用するため。
 
+## ノートブックから使う
+
+上から順に実行するだけの版：[`notebooks/gene_disease_ranking.ipynb`](notebooks/gene_disease_ranking.ipynb)
+
+```bash
+pip install jupyterlab
+jupyter lab notebooks/gene_disease_ranking.ipynb
+```
+
+編集するのは「1. 入力」のセルだけ（`DISEASE` / `GENES` / `MODEL`）。
+`MODEL = None` のままでも 3 章まで動き、**実際にモデルへ送られるプロンプトを目で確認できます**。
+torch も GPU も要りません。まずここを見て、遺伝子記号がモデルの出力側に無いことを
+確かめてから GPU のある環境へ持っていくのが安全です。
+
 ## パイプライン
 
 | 段階 | 内容 | スクリプト |
