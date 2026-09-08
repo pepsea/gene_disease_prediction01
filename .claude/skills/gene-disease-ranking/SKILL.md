@@ -38,6 +38,42 @@ For 100+ candidates, do not attempt to put the full list in the prompt and ask
 for a choice. Models attend weakly to the middle of long lists, so genes in the
 center are effectively invisible regardless of context length.
 
+`scripts/rank.py` applies this table for you. Disease name and gene list go in
+as ordinary variables, and `scripts/prompts.py` converts the list into prompts
+automatically:
+
+```python
+from rank import GeneRanker
+
+ranker = GeneRanker("EPFLiGHT/Gemma-3-27B-MeditronFO")
+result = ranker.rank(disease="Cystic fibrosis",
+                     genes=["CFTR", "HBB", "GPR52", "GPR56", "APOE"])
+result["call"], result["margin"], result["rank_stability"]
+```
+
+```bash
+python scripts/rank.py --model <model-id> \
+  --disease "Cystic fibrosis" --genes CFTR HBB GPR52 GPR56 APOE
+```
+
+Be precise about what "convert the list into a prompt" means here, because the
+obvious reading is the one that breaks the pipeline. The list is **not** pasted
+into a single prompt for the model to choose from. It is expanded into one
+forced-continuation scoring per gene (Stage 1) and into rotated lettered option
+blocks (Stage 2). Both keep the symbol out of the model's output.
+
+`--dry-run` prints the generated prompts without loading a model or importing
+torch. Run it once against a new candidate list — it is the cheapest way to see
+that no gene symbol sits where the model would have to generate it.
+
+```bash
+python scripts/rank.py --disease "Cystic fibrosis" --genes CFTR HBB GPR52 --dry-run
+```
+
+Ranking several diseases against the same gene list should reuse one
+`GeneRanker`: the neutral term is disease-independent, so `rank_many` computes
+it once rather than once per disease.
+
 ## Stage 1 — PMI scoring (the workhorse)
 
 Score each candidate independently by forced-teacher log-likelihood. Because the
@@ -90,7 +126,9 @@ Three details carry most of the value:
 - **Read the logprobs of ` A`…` E` at the answer position instead of generating.**
   Fully deterministic, one forward pass, no parsing.
 - **Always include "None of the above."** Without an exit, the model is forced to
-  pick something, and guesses get scored as if they were knowledge.
+  pick something, and guesses get scored as if they were knowledge. With five
+  labels this caps a group at four genes; `build_mcq_rounds` clamps larger group
+  sizes rather than letting the exit option fall off the end.
 - **Rotate the option order and average.** If the ranking moves when the order
   moves, the model is not reading the genes — it is following position bias. That
   instability is a useful signal, not noise: surface it as a confidence flag.
@@ -207,6 +245,8 @@ trusting the notes, since terms change.
 
 ## Reference files
 
+- `scripts/rank.py` — entry point taking disease and gene list as variables
+- `scripts/prompts.py` — the one place a gene list becomes prompt text
 - `references/models.md` — model comparison, licenses, VRAM, tokenizer notes
 - `references/scoring.md` — PMI derivation, calibration, length normalization, batching
 - `references/data-sources.md` — Open Targets, HGNC, PubTator3, GWAS Catalog; licenses and access

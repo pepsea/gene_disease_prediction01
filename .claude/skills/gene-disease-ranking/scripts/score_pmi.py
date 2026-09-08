@@ -15,12 +15,15 @@ Output: one JSON object per disease, genes sorted by descending PMI.
 import argparse
 import json
 import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import numpy as np
 import torch
 
-DISEASE_TMPL = "Gene most strongly associated with {disease}: "
-NEUTRAL_TMPL = "Gene: "
+# Templates live in prompts.py, the single place a gene list becomes prompt text.
+from prompts import DISEASE_TMPL, NEUTRAL_TMPL  # noqa: E402
 
 
 def read_lines(path):

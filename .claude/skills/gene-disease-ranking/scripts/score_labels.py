@@ -12,42 +12,21 @@ is following position rather than reading the genes.
 """
 import argparse
 import json
+import os
+import sys
 from collections import defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import numpy as np
 import torch
 
-LABELS = list("ABCDE")
-NONE_OPT = "None of the above"
+from prompts import (LABELS, NONE_OPT, build_mcq_prompt,  # noqa: E402
+                     build_mcq_rounds)
 
-FEWSHOT = """Disease: Cystic fibrosis
-Options:
-A. HBB
-B. CFTR
-C. GPR52
-D. APOE
-E. None of the above
-Answer: B
-
-Disease: Sickle cell disease
-Options:
-A. CFTR
-B. APOE
-C. HBB
-D. GPR56
-E. None of the above
-Answer: C
-
-"""
-
-
-def build_prompt(disease, options, fewshot=True):
-    lines = [FEWSHOT] if fewshot else []
-    lines.append(f"Disease: {disease}\nOptions:")
-    for lab, opt in zip(LABELS, options):
-        lines.append(f"{lab}. {opt}")
-    lines.append("Answer:")
-    return "\n".join(lines)
+# Prompt construction lives in prompts.py so that rank.py, the dry-run view and
+# this script cannot drift apart. Kept under the old name for callers.
+build_prompt = build_mcq_prompt
 
 
 class LabelScorer:
@@ -77,17 +56,10 @@ class LabelScorer:
 def rerank(scorer, disease, genes, group_size=4, rotations=4):
     """Score genes in groups, rotating option order. Returns {gene: mean logprob}."""
     acc = defaultdict(list)
-    groups = [genes[i:i + group_size] for i in range(0, len(genes), group_size)]
-    for group in groups:
-        if len(group) < 2:
-            continue
-        for r in range(min(rotations, len(group))):
-            rolled = group[r:] + group[:r]
-            options = rolled + [NONE_OPT]
-            options = options[:len(LABELS)]
-            s = scorer.score(build_prompt(disease, options))
-            for lab, opt in zip(LABELS, options):
-                acc[opt].append(s[lab])
+    for rnd in build_mcq_rounds(disease, genes, group_size, rotations):
+        s = scorer.score(rnd["prompt"])
+        for lab, opt in zip(LABELS, rnd["options"]):
+            acc[opt].append(s[lab])
     return {g: float(np.mean(v)) for g, v in acc.items()}
 
 
