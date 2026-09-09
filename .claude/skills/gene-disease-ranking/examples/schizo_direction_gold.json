@@ -1,0 +1,314 @@
+{
+ "DRD2": {
+  "action_types": {
+   "ANTAGONIST": 39,
+   "INHIBITOR": 1,
+   "MODULATOR": 2,
+   "INVERSE AGONIST": 3,
+   "PARTIAL AGONIST": 3
+  },
+  "n_drugs": 48,
+  "verdict": "MIXED",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "ARIPIPRAZOLE",
+   "ARIPIPRAZOLE LAUROXIL",
+   "ASENAPINE"
+  ]
+ },
+ "HTR2A": {
+  "action_types": {
+   "ANTAGONIST": 37
+  },
+  "n_drugs": 37,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "ARIPIPRAZOLE",
+   "ARIPIPRAZOLE LAUROXIL",
+   "ASENAPINE"
+  ]
+ },
+ "DRD3": {
+  "action_types": {
+   "ANTAGONIST": 11,
+   "MODULATOR": 2,
+   "INVERSE AGONIST": 3
+  },
+  "n_drugs": 16,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "BLONANSERIN",
+   "CARIPRAZINE",
+   "CARIPRAZINE HYDROCHLORIDE"
+  ]
+ },
+ "HTR2C": {
+  "action_types": {
+   "ANTAGONIST": 16
+  },
+  "n_drugs": 16,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CARPHENAZINE",
+   "CLOTHIAPINE",
+   "LOXAPINE"
+  ]
+ },
+ "DRD4": {
+  "action_types": {
+   "ANTAGONIST": 10,
+   "INVERSE AGONIST": 3
+  },
+  "n_drugs": 13,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "CHLORPROMAZINE",
+   "CLOTHIAPINE",
+   "HALOPERIDOL",
+   "HALOPERIDOL DECANOATE"
+  ]
+ },
+ "HTR1A": {
+  "action_types": {
+   "ANTAGONIST": 1,
+   "PARTIAL AGONIST": 3
+  },
+  "n_drugs": 4,
+  "verdict": "MIXED",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "ARIPIPRAZOLE",
+   "ARIPIPRAZOLE LAUROXIL",
+   "BREXPIPRAZOLE"
+  ]
+ },
+ "HTR2B": {
+  "action_types": {
+   "ANTAGONIST": 2
+  },
+  "n_drugs": 2,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CLOTHIAPINE"
+  ]
+ },
+ "HTR3A": {
+  "action_types": {
+   "ANTAGONIST": 2
+  },
+  "n_drugs": 2,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CLOTHIAPINE"
+  ]
+ },
+ "HTR3B": {
+  "action_types": {
+   "ANTAGONIST": 2
+  },
+  "n_drugs": 2,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CLOTHIAPINE"
+  ]
+ },
+ "HTR3C": {
+  "action_types": {
+   "ANTAGONIST": 2
+  },
+  "n_drugs": 2,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CLOTHIAPINE"
+  ]
+ },
+ "HTR3D": {
+  "action_types": {
+   "ANTAGONIST": 2
+  },
+  "n_drugs": 2,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CLOTHIAPINE"
+  ]
+ },
+ "HTR3E": {
+  "action_types": {
+   "ANTAGONIST": 2
+  },
+  "n_drugs": 2,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE",
+   "CLOTHIAPINE"
+  ]
+ },
+ "DRD1": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "PIMOZIDE"
+  ]
+ },
+ "DRD5": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "PIMOZIDE"
+  ]
+ },
+ "HTR1B": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR1D": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR1E": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR1F": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR4": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR5A": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR6": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "HTR7": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "AMISULPRIDE"
+  ]
+ },
+ "OPRM1": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "SAMIDORPHAN L-MALATE"
+  ]
+ },
+ "OPRD1": {
+  "action_types": {
+   "PARTIAL AGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "activate",
+  "example_drugs": [
+   "SAMIDORPHAN L-MALATE"
+  ]
+ },
+ "OPRK1": {
+  "action_types": {
+   "PARTIAL AGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "activate",
+  "example_drugs": [
+   "SAMIDORPHAN L-MALATE"
+  ]
+ },
+ "ADRA1A": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "SERTINDOLE"
+  ]
+ },
+ "ADRA1B": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "SERTINDOLE"
+  ]
+ },
+ "ADRA1D": {
+  "action_types": {
+   "ANTAGONIST": 1
+  },
+  "n_drugs": 1,
+  "verdict": "inhibit",
+  "example_drugs": [
+   "SERTINDOLE"
+  ]
+ }
+}
