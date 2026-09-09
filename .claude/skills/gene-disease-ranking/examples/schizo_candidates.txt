@@ -1,0 +1,22 @@
+# Schizophrenia candidates. Source: Open Targets association scores
+# for MONDO_0005090 (schizophrenia), plus COMT which the user named.
+DRD2
+HTR2A
+DRD3
+DRD4
+HTR2C
+HTR1A
+HTR1B
+SHANK3
+RTN4R
+MTHFR
+GRIN2A
+SETD1A
+GRM3
+RBM12
+FES
+SLC39A8
+NRXN1
+TCF4
+CACNA1C
+COMT
