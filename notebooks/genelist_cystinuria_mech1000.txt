@@ -1,0 +1,1010 @@
+# cystinuria デモ用の候補リスト（1000 遺伝子）— メカニズム形式（any of these steps）の検証用
+# 作成 2026-09-13。順序は下の構成の順（段階 0 以降は並びに依存しない）。
+#   1. 正解 4: SLC3A1 / SLC7A9（原因、Open Targets 遺伝学 0.95）、
+#      SLC5A2（dapagliflozin NCT04818034）、AVPR2（tolvaptan NCT02538016）
+#   2. メカニズム関連 8（UniProt 機能で確認）
+#      尿の濃縮: AQP2, SLC12A1, SLC14A2 ／ 尿の酸性化: SLC4A1, ATP6V1B1, ATP6V0A4, CA2, CA4
+#   3. 同族デコイ 47: genelist_cystinuria_slc50.txt の正解以外（SLC 系、Open Targets < 0.1）
+#   4. Open Targets（MONDO_0009067）関連スコア上位 100
+#   ここまで重複を除いて 128 件。残り 872 件は genelist01_all.txt から seed=0 で無作為に補充。
+# 形式: 記号<TAB>HGNC正式名<TAB>UniProt推奨タンパク質名<TAB>遺伝子記号の別名（UniProt Gene Names、カンマ区切り、最大4）
+SLC3A1	solute carrier family 3 member 1	Amino acid transporter heavy chain SLC3A1	NBAT
+SLC7A9	solute carrier family 7 member 9	b(0,+)-type amino acid transporter 1	BAT1
+SLC5A2	solute carrier family 5 member 2	Sodium/glucose cotransporter 2	SGLT2
+AVPR2	arginine vasopressin receptor 2	Vasopressin V2 receptor	ADHR,DIR,DIR3,V2R
+AQP2	aquaporin 2	Aquaporin-2	
+SLC12A1	solute carrier family 12 member 1	Solute carrier family 12 member 1	NKCC2
+SLC14A2	solute carrier family 14 member 2	Urea transporter 2	HUT2,UT2
+SLC4A1		Band 3 anion transport protein	AE1,DI,EPB3
+ATP6V1B1	ATPase H+ transporting V1 subunit B1	V-type proton ATPase subunit B, kidney isoform	ATP6B1,VATB,VPP3
+ATP6V0A4		V-type proton ATPase 116 kDa subunit a 4	ATP6N1B,ATP6N2
+CA2		Carbonic anhydrase 2	
+CA4		Carbonic anhydrase 4	
+SLC7A13	solute carrier family 7 member 13	Solute carrier family 7 member 13	AGT1,XAT2
+SLC22A12	solute carrier family 22 member 12	Solute carrier family 22 member 12	OATL4,URAT1
+SLC12A3	solute carrier family 12 member 3	Solute carrier family 12 member 3	NCC,TSC
+SLC16A10	solute carrier family 16 member 10	Monocarboxylate transporter 10	MCT10,TAT1
+SLC2A9	solute carrier family 2 member 9	Solute carrier family 2, facilitated glucose transporter member 9	GLUT9
+SLC22A8	solute carrier family 22 member 8	Organic anion transporter 3	OAT3
+SLC22A6	solute carrier family 22 member 6	Solute carrier family 22 member 6	OAT1,PAHT
+SLC6A18	solute carrier family 6 member 18	Inactive sodium-dependent neutral amino acid transporter B(0)AT3	B0AT3,XTRP2
+SLC1A1	solute carrier family 1 member 1	Excitatory amino acid transporter 3	EAAC1,EAAT3,HEAAC1
+SLC13A2	solute carrier family 13 member 2	Solute carrier family 13 member 2	NADC1,SDCT1
+SLC26A4	solute carrier family 26 member 4	Pendrin	PDS
+SLC15A2	solute carrier family 15 member 2	Solute carrier family 15 member 2	PEPT2
+SLC4A9	solute carrier family 4 member 9	Anion exchange protein 4	AE4,SBC5
+SLC6A19	solute carrier family 6 member 19	Sodium-dependent neutral amino acid transporter B(0)AT1	B0AT1
+SLC14A1	solute carrier family 14 member 1 (Kidd blood group)	Urea transporter 1	HUT11,JK,RACH1,UT1
+SLC4A11	solute carrier family 4 member 11	Solute carrier family 4 member 11	BTR1
+SLC4A4	solute carrier family 4 member 4	Electrogenic sodium bicarbonate cotransporter 1	NBC,NBC1,NBCE1
+SLC26A1	solute carrier family 26 member 1	Sulfate anion transporter 1	SAT1
+SLC4A5	solute carrier family 4 member 5	Electrogenic sodium bicarbonate cotransporter 4	NBC4
+SLC26A6	solute carrier family 26 member 6	Solute carrier family 26 member 6	
+SLC4A8	solute carrier family 4 member 8	Electroneutral sodium bicarbonate exchanger 1	NBC,NBC3,NDCBE1
+SLC34A3	solute carrier family 34 member 3	Sodium-dependent phosphate transport protein 2C	NPT2C,NPTIIC
+SLC13A1	solute carrier family 13 member 1	Solute carrier family 13 member 1	NAS1,NASI1
+SLC17A3	solute carrier family 17 member 3	Sodium-dependent phosphate transport protein 4	NPT4
+SLC23A1	solute carrier family 23 member 1	Solute carrier family 23 member 1	SVCT1,YSPL3
+SLC46A1	solute carrier family 46 member 1	Proton-coupled folate transporter	G21,HCP1,PCFT
+SLC5A10	solute carrier family 5 member 10	Sodium/mannose cotransporter SLC5A10	SGLT5
+SLC34A2	solute carrier family 34 member 2	Sodium-dependent phosphate transport protein 2B	
+SLC39A8	solute carrier family 39 member 8	Metal cation symporter ZIP8	BIGM103,ZIP8,PP3105
+SLC7A7	solute carrier family 7 member 7	Y+L amino acid transporter 1	
+SLC5A1	solute carrier family 5 member 1	Sodium/glucose cotransporter 1	NAGT,SGLT1
+SLC28A1	solute carrier family 28 member 1	Sodium/nucleoside cotransporter 1	CNT1
+SLC9A3	solute carrier family 9 member A3	Sodium/hydrogen exchanger 3	NHE3
+SLC22A5	solute carrier family 22 member 5	Organic cation/carnitine transporter 2	OCTN2
+SLC38A3	solute carrier family 38 member 3	Sodium-coupled neutral amino acid transporter 3	G17,NAT1,SN1,SNAT3
+SLC1A5	solute carrier family 1 member 5	Neutral amino acid transporter B	ASCT2,M7V1,RDR,RDRC
+SLC22A4	solute carrier family 22 member 4	Solute carrier family 22 member 4	ETT,OCTN1,UT2H
+OTC	ornithine transcarbamylase	Ornithine transcarbamylase, mitochondrial	
+UMOD	uromodulin	Uromodulin	
+CLCN5	Cl-/H+ antiporter 5	H(+)/Cl(-) exchange transporter 5	CLCK2
+GRHPR	glyoxylate and hydroxypyruvate reductase	Glyoxylate reductase/hydroxypyruvate reductase	GLXR,MSTP035
+AGXT	alanine--glyoxylate aminotransferase	Alanine--glyoxylate aminotransferase	AGT1,SPAT
+CLDN2	claudin 2	Claudin-2	PSEC0059,SP82
+LAMA5	laminin subunit alpha 5	Laminin subunit alpha-5	
+WNK4	WNK lysine deficient protein kinase 4	Serine/threonine-protein kinase WNK4	PRKWNK4
+PREPL	prolyl endopeptidase like	Prolyl endopeptidase-like	
+CEP89	centrosomal protein 89	Centrosomal protein of 89 kDa	CCDC123
+CENPF	centromere protein F	Centromere protein F	
+COL4A4	collagen type IV alpha 4 chain	Collagen alpha-4(IV) chain	
+APRT	adenine phosphoribosyltransferase	Adenine phosphoribosyltransferase	
+ADCY6	adenylate cyclase 6	Adenylate cyclase type 6	
+TRPV5	transient receptor potential cation channel subfamily V member 5	Transient receptor potential cation channel subfamily V member 5	ECAC1
+PTGS2	prostaglandin-endoperoxide synthase 2	Prostaglandin G/H synthase 2	COX2
+COL4A3	collagen type IV alpha 3 chain	Collagen alpha-3(IV) chain	
+PKD1	polycystin 1, transient receptor potential channel interacting	Polycystin-1	
+HAL	histidine ammonia-lyase	Histidine ammonia-lyase	HIS
+ABCG2	ATP binding cassette subfamily G member 2 (JR blood group)	Broad substrate specificity ATP-binding cassette transporter ABCG2	ABCP,BCRP,BCRP1,MXR
+KLHL2	kelch like family member 2	Kelch-like protein 2	
+ACE	angiotensin I converting enzyme	Angiotensin-converting enzyme	DCP,DCP1
+AKR1B1	aldo-keto reductase family 1 member B	Aldo-keto reductase family 1 member B1	ALDR1,ALR2
+STK39	serine/threonine kinase 39	STE20/SPS1-related proline-alanine-rich protein kinase	PASK,SPAK
+INSR	insulin receptor	Insulin receptor	
+AQP7	aquaporin 7	Aquaporin-7	AQP7L,AQP9
+AQP7B	aquaporin 7B	Putative aquaporin-7B	
+ADORA1	adenosine A1 receptor	Adenosine receptor A1	
+CEBPD	CCAAT enhancer binding protein delta	CCAAT/enhancer-binding protein delta	
+SGK1	serum/glucocorticoid regulated kinase 1	Serine/threonine-protein kinase Sgk1	SGK
+GCK	glucokinase	Hexokinase-4	
+CYP4A11	cytochrome P450 family 4 subfamily A member 11	Cytochrome P450 4A11	CYP4A2
+CYP4A22	cytochrome P450 family 4 subfamily A member 22	Cytochrome P450 4A22	
+AQP11	aquaporin 11	Aquaporin-11	AQPX1,PSEC0027
+COL4A5	collagen type IV alpha 5 chain	Collagen alpha-5(IV) chain	
+MMUT	methylmalonyl-CoA mutase	Methylmalonyl-CoA mutase, mitochondrial	MUT
+CLTRN	collectrin, amino acid transport regulator	Collectrin	TMEM27
+PHEX	phosphate regulating endopeptidase X-linked	Phosphate-regulating neutral endopeptidase PHEX	PEX
+GUCA2B	guanylate cyclase activator 2B	Guanylate cyclase activator 2B	
+CD2AP	CD2 associated protein	CD2-associated protein	
+NPHS2	NPHS2 stomatin family member, podocin	Podocin	
+WHAMM	WASP homolog associated with actin, golgi membranes and microtubules	WASP homolog-associated protein with actin, membranes and microtubules	WHDC1
+MTSS1	MTSS I-BAR domain containing 1	Protein MTSS 1	MIM
+NR3C2	nuclear receptor subfamily 3 group C member 2	Mineralocorticoid receptor	MCR,MLR
+PAX2	paired box 2	Paired box protein Pax-2	
+AGTR2	angiotensin II receptor type 2	Type-2 angiotensin II receptor	
+HNF1A	HNF1 homeobox A	Hepatocyte nuclear factor 1-alpha	TCF1
+CLCNKB	chloride voltage-gated channel Kb	Chloride channel protein ClC-Kb	
+CLCNKA	chloride voltage-gated channel Ka	Chloride channel protein ClC-Ka	
+PRODH2	proline dehydrogenase 2	Hydroxyproline dehydrogenase	HSPOX1,HYPDH
+POU3F3	POU class 3 homeobox 3	POU domain, class 3, transcription factor 3	BRN1,OTF8
+AGT	angiotensinogen	Angiotensinogen	SERPINA8
+DAPK1	death associated protein kinase 1	Death-associated protein kinase 1	DAPK
+REN	renin	Renin	
+HTR3A	5-hydroxytryptamine receptor 3A	5-hydroxytryptamine receptor 3A	5HT3R,HTR3
+CAV1	caveolin 1	Caveolin-1	CAV
+GLIS2	GLIS family zinc finger 2	Zinc finger protein GLIS2	NKL
+COL4A1	collagen type IV alpha 1 chain	Collagen alpha-1(IV) chain	
+PDE1A	phosphodiesterase 1A	Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A	
+KLHL3	kelch like family member 3	Kelch-like protein 3	
+SMAD3	SMAD family member 3	SMAD family member 3	MADH3
+HPX	hemopexin	Hemopexin	
+LRP2	LDL receptor related protein 2	Low-density lipoprotein receptor-related protein 2	
+STUB1		E3 ubiquitin-protein ligase CHIP	CHIP,PP1131
+GNE		Bifunctional UDP-N-acetylglucosamine 2-epimerase/N-acetylmannosamine kinase	GLCNE,IBM2
+SPRR1B		Cornifin-B	
+KCNK1		Potassium channel subfamily K member 1	HOHO1,KCNO1,TWIK1
+FAH		Fumarylacetoacetase	
+CRIM1		Cysteine-rich motor neuron 1 protein	S52
+TFAP2B		Transcription factor AP-2-beta	
+XDH		Xanthine dehydrogenase/oxidase	XDHA
+DRD5		Dopamine receptor D5	DRD1B,DRD1L2
+TGFB1		Transforming growth factor beta-1 proprotein	TGFB
+AQP4		Aquaporin-4	
+MOCS1		Molybdenum cofactor biosynthesis protein 1	MIG11
+MAS1		Proto-oncogene Mas	MAS
+CHGA		Chromogranin-A	
+MAGI2		Membrane-associated guanylate kinase, WW and PDZ domain-containing protein 2	ACVRINP1,AIP1
+GPR68		G protein-coupled receptor 68	OGR1
+SAA1	serum amyloid A1	Serum amyloid A-1 protein	
+CER1		Cerberus	DAND4
+CTDSP2		Carboxy-terminal domain RNA polymerase II polypeptide A small phosphatase 2	NIF2,OS4,SCP2
+WDFY3		WD repeat and FYVE domain-containing protein 3	
+OTOP2		Proton channel OTOP2	
+LY6K		Lymphocyte antigen 6K	CO16
+SHMT1		Serine hydroxymethyltransferase, cytosolic	
+DUSP8		Dual specificity protein phosphatase 8	C11orf81,VH5
+COX8C		Cytochrome c oxidase subunit 8C, mitochondrial	
+CHRNA3		Neuronal acetylcholine receptor subunit alpha-3	NACHRA3
+OR2T3		Olfactory receptor 2T3	
+LASP1		LIM and SH3 domain protein 1	MLN50
+MYF6		Myogenic factor 6	BHLHC4,MRF4
+GRIA3	glutamate ionotropic receptor AMPA type subunit 3	Glutamate receptor 3	GluA3,GLUR3,GLURC
+PITPNM2		Membrane-associated phosphatidylinositol transfer protein 2	NIR3
+COA4		Cytochrome c oxidase assembly factor 4 homolog, mitochondrial	CHCHD8,E2IG2
+KCNA7		Potassium voltage-gated channel subfamily A member 7	
+ABCC5	ATP binding cassette subfamily C member 5	ATP-binding cassette sub-family C member 5	MRP5
+CSF2RB		Cytokine receptor common subunit beta	IL3RB,IL5RB
+PMF1		Polyamine-modulated factor 1	
+CCRL2	C-C motif chemokine receptor like 2	C-C chemokine receptor-like 2	CCR11,CCR6,CKRX,CRAM
+CHTOP		Chromatin target of PRMT1 protein	C1orf77,FOP,HT031,PP7704
+HTR1E		5-hydroxytryptamine receptor 1E	
+POLR2E		DNA-directed RNA polymerases I, II, and III subunit RPABC1	
+DNAAF2		Protein kintoun	C14orf104,KTU
+AGAP4		Arf-GAP with GTPase, ANK repeat and PH domain-containing protein 4	AGAP8,CTGLF1,CTGLF5,MRIP2
+APOL4	apolipoprotein L4	Apolipoprotein L4	
+FREM2		FRAS1-related extracellular matrix protein 2	
+PHLDB2		Pleckstrin homology-like domain family B member 2	LL5B
+PVALEF		Parvalbumin-like EF-hand-containing protein	
+KRTAP3-1		Keratin-associated protein 3-1	KAP3.1,KRTAP3.1
+DNAAF6		Dynein axonemal assembly factor 6	CXorf41,PIH1D3
+TNFAIP1		BTB/POZ domain-containing adapter for CUL3-mediated RhoA degradation protein 2	BACURD2,EDP1
+NHS		Actin remodeling regulator NHS	
+TMEM254		Transmembrane protein 254	C10orf57
+TERT	telomerase reverse transcriptase	Telomerase reverse transcriptase	EST2,TCS1,TRT
+CRYGS		Gamma-crystallin S	CRYG8
+GET1		Guided entry of tail-anchored proteins factor 1	CHD5,WRB
+PTGFR		Prostaglandin F2-alpha receptor	
+KRTAP5-10		Keratin-associated protein 5-10	KAP5.10,KRTAP5.10
+RGPD5		RANBP2-like and GRIP domain-containing protein 5/6	RANBP2L1,RGP5,RGP7,RGPD7;
+SYTL3		Synaptotagmin-like protein 3	SLP3
+LCE5A		Late cornified envelope protein 5A	LEP18,SPRL5A
+CBX6	chromobox 6	Chromobox protein homolog 6	
+DNAJC27		DnaJ homolog subfamily C member 27	RABJS,RBJ
+CC2D1B		Coiled-coil and C2 domain-containing protein 1B	LGD1
+CHST14		Carbohydrate sulfotransferase 14	D4ST1
+TDRD6		Tudor domain-containing protein 6	
+POU2F2		POU domain, class 2, transcription factor 2	OCT2,OTF2
+CDADC1		dCTP deaminase	
+SPATA22		Spermatogenesis-associated protein 22	
+HSFX4		Heat shock transcription factor, X-linked member 4	
+PDE12		2',5'-phosphodiesterase 12	
+SLC2A1		Solute carrier family 2, facilitated glucose transporter member 1	GLUT1
+HLA-DRB3		HLA class II histocompatibility antigen, DR beta 3 chain	
+LHX4		LIM/homeobox protein Lhx4	
+SERINC3		Serine incorporator 3	DIFF33,TDE1,SBBI99
+ZNF780A		Zinc finger protein 780A	
+XRCC6		DNA repair protein Ku70	G22P1
+UBAP1L	ubiquitin associated protein 1 like	Ubiquitin-associated protein 1-like	
+ALG13	ALG13 UDP-N-acetylglucosaminyltransferase subunit	UDP-N-acetylglucosamine transferase subunit ALG13	CXorf45,GLT28D1,MDS031
+KRT25		Keratin, type I cytoskeletal 25	KRT25A
+OXNAD1		Oxidoreductase NAD-binding domain-containing protein 1	
+SNUPN	snurportin 1	Snurportin-1	RNUT1,SPN1
+GALNT17		Polypeptide N-acetylgalactosaminyltransferase 17	WBSCR17
+ACYP2	acylphosphatase 2	Acylphosphatase-2	ACYP
+AVL9		Late secretory pathway protein AVL9 homolog	
+PERP		p53 apoptosis effector related to PMP-22	KCP1,KRTCAP1,PIGPC1,THW
+DDIT4L		DNA damage-inducible transcript 4-like protein	REDD2,RTP801L
+FLYWCH2		FLYWCH family member 2	
+GLUD2		Glutamate dehydrogenase 2, mitochondrial	GLUDP1
+BNIP1		Vesicle transport protein SEC20	NIP1,SEC20L,TRG8
+TPPP2		Tubulin polymerization-promoting protein family member 2	C14orf8
+TMPRSS6		Transmembrane protease serine 6	
+BCKDK		Branched-chain alpha-ketoacid dehydrogenase kinase	
+GALNTL6	polypeptide N-acetylgalactosaminyltransferase like 6	Polypeptide N-acetylgalactosaminyltransferase-like 6	GALNT17
+ALS2	alsin Rho guanine nucleotide exchange factor ALS2	Alsin	ALS2CR6
+FLII		Protein flightless-1 homolog	FLIL
+MTHFS		5-formyltetrahydrofolate cyclo-ligase	
+PAG1		Phosphoprotein associated with glycosphingolipid-enriched microdomains 1	CBP,PAG
+WDR48		WD repeat-containing protein 48	UAF1
+TPRA1		Transmembrane protein adipocyte-associated 1	GPR175,TMEM227,PP6566
+EIF6		Eukaryotic translation initiation factor 6	EIF3A,ITGB4BP
+AMY2B	amylase alpha 2B	Alpha-amylase 2B	
+PXT1		Peroxisomal testis-specific protein 1	STEPP
+C12orf76		Uncharacterized protein C12orf76	
+IL17RB		Interleukin-17 receptor B	CRL4,EVI27,IL17BR
+MTHFD2L		Bifunctional methylenetetrahydrofolate dehydrogenase/cyclohydrolase 2, mitochondrial	
+ILF2		Interleukin enhancer-binding factor 2	NF45
+ENY2		Transcription and mRNA export factor ENY2	DC6
+MAGEH1		Melanoma-associated antigen H1	APR1
+PKD2L1		Polycystin-2-like protein 1	PKD2L,PKDL,TRPP3
+FGF14		Fibroblast growth factor 14	FHF4
+GAR1		H/ACA ribonucleoprotein complex subunit 1	NOLA1
+TOB2		Protein Tob2	TOB4,TROB2
+GMCL2		Germ cell-less protein-like 2	GCL,GMCL1L,GMCL1P1
+DCAKD		Dephospho-CoA kinase domain-containing protein	
+FAM246A		Protein FAM246A	
+RNF207		RING finger protein 207	C1orf188
+SYCE1		Synaptonemal complex central element protein 1	C10orf94
+HMCN2		Hemicentin-2	
+NMRK2		Nicotinamide riboside kinase 2	ITGB1BP3,NRK2
+LECT2		Leukocyte cell-derived chemotaxin-2	
+GKN2		Gastrokine-2	BLOT,GDDR,TFIZ1
+NIBAN3		Protein Niban 3	BCNP1,FAM129C
+LTC4S		Leukotriene C4 synthase	
+GNG5B		Guanine nucleotide-binding protein G(I)/G(S)/G(O) subunit gamma-5B	GNG5P2
+TRAM2		Translocating chain-associated membrane protein 2	
+FBXO7		F-box only protein 7	FBX7
+MCTS2		Malignant T-cell-amplified sequence 2	
+ZNF558		Zinc finger protein 558	
+ASB15		Ankyrin repeat and SOCS box protein 15	
+PHKG1		Phosphorylase b kinase gamma catalytic chain, skeletal muscle/heart isoform	PHKG
+IRF6	interferon regulatory factor 6	Interferon regulatory factor 6	
+LHPP		Phospholysine phosphohistidine inorganic pyrophosphate phosphatase	
+ALPG	alkaline phosphatase, germ cell	Alkaline phosphatase, germ cell type	ALPPL,ALPPL2
+KIF3A		Kinesin-like protein KIF3A	KIF3
+ARHGAP8		Rho GTPase-activating protein 8	
+MLXIPL		Carbohydrate-responsive element-binding protein	BHLHD14,MIO,WBSCR14
+HAPLN4		Hyaluronan and proteoglycan link protein 4	BRAL2
+TIMM22		Mitochondrial import inner membrane translocase subunit Tim22	TEX4,TIM22
+FAM90A11		Protein FAM90A11	FAM90A11P
+NPIPB3		Nuclear pore complex-interacting protein family member B3	NPIPL3
+ATP5F1E		ATP synthase F(1) complex subunit epsilon, mitochondrial	ATP5E
+GCLM		Glutamate--cysteine ligase regulatory subunit	GLCLR
+C5orf22		UPF0489 protein C5orf22	
+RNF13	ring finger protein 13	E3 ubiquitin-protein ligase RNF13	RZF
+PGBD3		PiggyBac transposable element-derived protein 3	
+ZNF593OS		Transmembrane protein ZNF593OS	
+CHM		Rab proteins geranylgeranyltransferase component A 1	REP1,TCD
+CHST15		Carbohydrate sulfotransferase 15	BRAG,GALNAC4S6ST
+CTRB2		Chymotrypsinogen B2	
+KIAA1586		E3 SUMO-protein ligase KIAA1586	
+SLC27A2		Long-chain fatty acid transport protein 2	ACSVL1,FACVL1,FATP2,VLACS
+FAM9C		Protein FAM9C	TEX39C
+CLEC1A		C-type lectin domain family 1 member A	CLEC1
+FAM131A		Protein FAM131A	C3orf40
+C9orf152		Uncharacterized protein C9orf152	
+CYB5R3		NADH-cytochrome b5 reductase 3	DIA1
+TMEM52B		Transmembrane protein 52B	C12orf59
+FBXO11		F-box only protein 11	FBX11,PRMT9,VIT1,UG063H01
+TIMP1	TIMP metallopeptidase inhibitor 1	Metalloproteinase inhibitor 1	CLGI,TIMP
+FPR1		N-formyl peptide receptor 1	
+ZNF732		Zinc finger protein 732	
+TRABD		TraB domain-containing protein	TTG2,PP2447
+HTR2C		5-hydroxytryptamine receptor 2C	HTR1C
+SLC22A31		Putative solute carrier family 22 member 31	
+CD93	CD93 molecule	Complement component C1q receptor	C1QR1,MXRA4
+DCPH1		Damage-control phosphatase 1	ARMT1,C6orf211,DUF89
+OSMR		Oncostatin-M-specific receptor subunit beta	OSMRB
+ADAM12	ADAM metallopeptidase domain 12	Disintegrin and metalloproteinase domain-containing protein 12	MLTN
+CNOT6L		CCR4-NOT transcription complex subunit 6-like	CCR4B
+MUSK		Muscle, skeletal receptor tyrosine-protein kinase	
+SAMD15		Sterile alpha motif domain-containing protein 15	C14orf174,FAM15A
+GJB1		Gap junction beta-1 protein	CX32
+NARF		Nuclear prelamin A recognition factor	
+NME9		Thioredoxin domain-containing protein 6	TXL2,TXNDC6
+SEC61A2		Protein transport protein Sec61 subunit alpha isoform 2	
+URB1		Nucleolar pre-ribosomal-associated protein 1	C21orf108,NOP254,NPA1
+MARK4		MAP/microtubule affinity-regulating kinase 4	MARKL1
+MLLT1		Protein ENL	ENL,LTG19,YEATS1
+DPPA2		Developmental pluripotency-associated protein 2	PESCRG1
+IMMT	inner membrane mitochondrial protein	MICOS complex subunit MIC60	HMP,MIC60,MINOS2,PIG4
+ERCC5		DNA excision repair protein ERCC-5	ERCM2,XPG,XPGC
+MPL		Thrombopoietin receptor	TPOR
+TMEM222	transmembrane protein 222	Transmembrane protein 222	C1orf160
+HLA-DPB1		HLA class II histocompatibility antigen, DP beta 1 chain	HLA-DP1B
+ZNF382	zinc finger protein 382	Zinc finger protein 382	
+HAUS5		HAUS augmin-like complex subunit 5	
+F12		Coagulation factor XII	
+CCDC18	coiled-coil domain containing 18	Coiled-coil domain-containing protein 18	
+MRPL1		Large ribosomal subunit protein uL1m	BM-022
+MAN2B2		Epididymis-specific alpha-mannosidase	
+CT45A8	cancer/testis antigen family 45 member A8	Cancer/testis antigen family 45 member A8	
+SSH2		Protein phosphatase Slingshot homolog 2	SSH2L
+PLA2G1B		Phospholipase A2	PLA2,PLA2A,PPLA2
+CFAP90		Cilia- and flagella-associated protein 90	C5orf49
+CENPVL1		Centromere protein V-like protein 1	CENPVP1
+DEFB104B		Beta-defensin 104	DEFB104A,DEFB104,DEFB4;
+OR4A15		Olfactory receptor 4A15	
+UBE2V1		Ubiquitin-conjugating enzyme E2 variant 1	CROC1,UBE2V,UEV1
+LRTM2		Leucine-rich repeat and transmembrane domain-containing protein 2	
+HOXC6		Homeobox protein Hox-C6	HOX3C
+CFAP53		Cilia- and flagella-associated protein 53	CCDC11
+CLDN16		Claudin-16	PCLN1
+MFRP		Membrane frizzled-related protein	
+FASTKD2		FAST kinase domain-containing protein 2, mitochondrial	
+HSPBAP1		HSPB1-associated protein 1	PASS1
+HSP90AA1		Heat shock protein HSP 90-alpha	HSP90A
+DUSP3		Dual specificity protein phosphatase 3	VHR
+BRD10		Uncharacterized bromodomain-containing protein 10	
+FOXO1		Forkhead box protein O1	FKHR,FOXO1A
+OR3A1		Olfactory receptor 3A1	OLFRA03
+OTUD5		OTU domain-containing protein 5	
+ASB13		Ankyrin repeat and SOCS box protein 13	
+AP3M2	adaptor related protein complex 3 subunit mu 2	AP-3 complex subunit mu-2	
+CYSRT1	cysteine rich tail 1	Cysteine-rich tail protein 1	C9orf169
+TPCN2		Two pore channel protein 2	TPC2
+HMGCLL1		3-hydroxy-3-methylglutaryl-CoA lyase, cytoplasmic	
+ERLN		Endoregulin	C17orf110,SMIM6
+CCR2		C-C chemokine receptor type 2	CMKBR2
+RPS6KL1		Ribosomal protein S6 kinase-like 1	
+SRRM5		Serine/arginine repetitive matrix protein 5	ZNF576
+ISCU		Iron-sulfur cluster assembly enzyme ISCU	NIFUN
+BRDT		Bromodomain testis-specific protein	
+KCNK6		Potassium channel subfamily K member 6	TOSS,TWIK2
+UTP20		Small subunit processome component 20 homolog	DRIM
+CNTN3		Contactin-3	PANG
+IFNGR2		Interferon gamma receptor 2	IFNGT1
+GRIN2C		Glutamate receptor ionotropic, NMDA 2C	NMDAR2C
+GPR155		Lysosomal cholesterol signaling protein	PGR22
+H2BC8		Histone H2B type 1-C/E/F/G/I	H2BC4,H2BFL,HIST1H2BC;,H2BC6
+WDR13		WD repeat-containing protein 13	
+MLYCD		Malonyl-CoA decarboxylase, mitochondrial	
+PSPN		Persephin	
+STAB2		Stabilin-2	FEEL2,FELL,FEX2,HARE
+KCNAB2		Voltage-gated potassium channel subunit beta-2	KCNA2B,KCNK2
+KLF1		Krueppel-like factor 1	EKLF
+HDGF		Hepatoma-derived growth factor	HMG1L2
+CSPP1		Centrosome and spindle pole-associated protein 1	CSPP
+CA11		Carbonic anhydrase-related protein 11	CARP2
+IGH			
+TOMM20L		TOMM20-like protein 1	
+LSS		Lanosterol synthase	OSC
+STOX2		Storkhead-box protein 2	
+CSNK1A1		Casein kinase I isoform alpha	
+ZNF516		Zinc finger protein 516	
+SLC7A11		Cystine/glutamate transporter	
+ZC3H4		Zinc finger CCCH domain-containing protein 4	C19orf7
+UQCRFS1		Cytochrome b-c1 complex subunit Rieske, mitochondrial	
+PIAS1		E3 SUMO-protein ligase PIAS1	DDXBP1
+DDX3X		ATP-dependent RNA helicase DDX3X	DBX,DDX3
+FOSL2		Fos-related antigen 2	FRA2
+SV2C		Synaptic vesicle glycoprotein 2C	
+ZNF141		Zinc finger protein 141	D4S90
+TRMT6		tRNA (adenine(58)-N(1))-methyltransferase non-catalytic subunit TRM6	TRM6
+SDC1		Syndecan-1	SDC
+TMEM134		Transmembrane protein 134	
+OR7G1		Olfactory receptor 7G1	OR7G1P
+BEST2		Bestrophin-2a	VMD2L1
+HYLS1		Centriolar and ciliogenesis-associated protein HYLS1	HLS
+TNIP2		TNFAIP3-interacting protein 2	ABIN2,FLIP1
+GABRG1		Gamma-aminobutyric acid receptor subunit gamma-1	
+RBP1		Retinol-binding protein 1	CRBP1
+VPS28		Vacuolar protein sorting-associated protein 28 homolog	
+CWF19L2		Pre-mRNA splicing factor CWF19L2	
+ZNF491		Zinc finger protein 491	
+RPL39		Large ribosomal subunit protein eL39	
+CAPN6		Calpain-6	CALPM,CANPX
+OR51E2		Olfactory receptor 51E2	PSGR
+CSAG2	CSAG family member 2	Chondrosarcoma-associated gene 2/3 protein	TRAG3;,CSAG3,CSAG3A
+MAPRE1		Microtubule-associated protein RP/EB family member 1	
+IL1A		Interleukin-1 alpha	IL1F1
+SPRYD7		SPRY domain-containing protein 7	C13orf1,CLLD6
+MCRIP1		Mapk-regulated corepressor-interacting protein 1	FAM195B,GRAN2
+FITM1		Fat storage-inducing transmembrane protein 1	FIT1
+ZNF627	zinc finger protein 627	Zinc finger protein 627	
+SH2D3A		SH2 domain-containing protein 3A	NSP1
+DUOXA1		Dual oxidase maturation factor 1	NIP,NUMBIP
+KLF8		Krueppel-like factor 8	BKLF3,ZNF741
+SF3B4		Splicing factor 3B subunit 4	SAP49
+PRPS1L1		Ribose-phosphate pyrophosphokinase 3	PRPS3,PRPSL
+SHANK2		SH3 and multiple ankyrin repeat domains protein 2	CORTBP1,PROSAP1
+MOB3C		MOB kinase activator 3C	MOBKL2C
+CAB39		Calcium-binding protein 39	MO25
+AGAP5	ArfGAP with GTPase domain, ankyrin repeat and PH domain 5	Arf-GAP with GTPase, ANK repeat and PH domain-containing protein 5	CTGLF2
+SDC4		Syndecan-4	
+GOLT1A		Vesicle transport protein GOT1A	GOT1B
+TUBE1		Tubulin epsilon chain	TUBE
+GAL3ST3		Galactose-3-O-sulfotransferase 3	
+RFC3		Replication factor C subunit 3	
+CCDC126		Coiled-coil domain-containing protein 126	
+HOXB8		Homeobox protein Hox-B8	HOX2D
+PIGP		Phosphatidylinositol N-acetylglucosaminyltransferase subunit P	DCRC,DSCR5,DSCRC,NPD010
+ORC5		Origin recognition complex subunit 5	ORC5L
+ZBTB25		Zinc finger and BTB domain-containing protein 25	C14orf51,KUP,ZNF46
+RGL1		Ral guanine nucleotide dissociation stimulator-like 1	RGL
+RDH12		Retinol dehydrogenase 12	SDR7C2
+GANC		Neutral alpha-glucosidase C	
+SP8		Transcription factor Sp8	
+MGA		MAX gene-associated protein	MAD5
+PHC3		Polyhomeotic-like protein 3	EDR3,PH3
+OFD1		Centriole and centriolar satellite protein OFD1	CXorf5
+KLK14		Kallikrein-14	KLKL6
+KRT17		Keratin, type I cytoskeletal 17	
+FARP2		FERM, ARHGEF and pleckstrin domain-containing protein 2	PLEKHC3
+ZFP36L1		mRNA decay activator protein ZFP36L1	BERG36,BRF1,ERF1,RNF162B
+EGR1		Early growth response protein 1	KROX24,ZNF225
+LZTS2		Leucine zipper putative tumor suppressor 2	LAPSER1
+SIPA1		Signal-induced proliferation-associated protein 1	SPA1
+RAB6B		Ras-related protein Rab-6B	
+KRTAP19-2	keratin associated protein 19-2	Keratin-associated protein 19-2	KAP19.2
+NEO1		Neogenin	IGDCC2,NGN
+NUDT4B		Diphosphoinositol polyphosphate phosphohydrolase NUDT4B	
+WDR41		WD repeat-containing protein 41	MSTP048
+NFYB		Nuclear transcription factor Y subunit beta	HAP3
+OR2T8	olfactory receptor family 2 subfamily T member 8	Olfactory receptor 2T8	OR2T8P
+SERPINH1		Serpin H1	CBP1,CBP2,HSP47,SERPINH2
+REG1A		Lithostathine-1-alpha	PSPS,PSPS1,REG
+CNGB3		Cyclic nucleotide-gated channel beta-3	
+OSR1		Protein odd-skipped-related 1	ODD
+ADM	adrenomedullin	Pro-adrenomedullin	AM
+TGM5		Protein-glutamine gamma-glutamyltransferase 5	TGMX
+HTR3D		5-hydroxytryptamine receptor 3D	
+IFTAP		Intraflagellar transport-associated protein	C11orf74,NWC
+TCHH		Trichohyalin	THH,THL,TRHY
+DNASE2B		Deoxyribonuclease-2-beta	DLAD
+SPACA1		Sperm acrosome membrane-associated protein 1	SAMP32
+CCDC198		Factor associated with metabolism and energy	C14orf105,FAME
+VTCN1		V-set domain-containing T-cell activation inhibitor 1	B7H4
+ADGB	androglobin	Androglobin	C6orf103
+UTS2		Urotensin-2	
+KCNJ12		ATP-sensitive inward rectifier potassium channel 12	IRK2,KCNJN1
+ZNF761		Zinc finger protein 761	
+GOLGA8J		Golgin subfamily A member 8J	
+ARSK		Arylsulfatase K	TSULF
+ZNF14		Zinc finger protein 14	GIOT4,KOX6
+PUSL1		tRNA pseudouridine synthase-like 1	
+PGA5		Pepsin A-5	
+LAMTOR5		Ragulator complex protein LAMTOR5	HBXIP,XIP
+PABPC4L		Polyadenylate-binding protein 4-like	
+POLR2J3		DNA-directed RNA polymerase II subunit RPB11-b2	
+APOBEC2	apolipoprotein B mRNA editing enzyme catalytic subunit 2	C->U-editing enzyme APOBEC-2	
+CCNL1		Cyclin-L1	BM-001
+FBXL22		F-box and leucine-rich protein 22	
+MYRIP		Rab effector MyRIP	SLAC2C
+DNAJB11		DnaJ homolog subfamily B member 11	EDJ,ERJ3,HDJ9,PSEC0121
+ZNF358		Zinc finger protein 358	
+GIGYF2		GRB10-interacting GYF protein 2	PERQ2,TNRC15
+SNRPE		Small nuclear ribonucleoprotein E	
+BRINP1		BMP/retinoic acid-inducible neural-specific protein 1	DBC1,DBCCR1,FAM5A,IB3089A
+FAM156B		Protein FAM156A/FAM156B	FAM156A,TMEM29,PP12994,TMEM29B
+SPINT2		Kunitz-type protease inhibitor 2	HAI2,KOP
+ZNF512B		Zinc finger protein 512B	
+CCNG2		Cyclin-G2	
+INHBC		Inhibin beta C chain	
+PRPF4		U4/U6 small nuclear ribonucleoprotein Prp4	PRP4
+PAFAH1B1		Platelet-activating factor acetylhydrolase IB subunit beta	LIS1,MDCR,MDS,PAFAHA
+CAPRIN2		Caprin-2	C1QDC1,EEG1,RNG140
+FCGR2A		Low affinity immunoglobulin gamma Fc region receptor II-a	CD32,FCG2,FCGR2A1,IGFR2
+LARP6		La-related protein 6	
+SERF2		Small EDRK-rich factor 2	FAM2C
+TNFSF12		Tumor necrosis factor ligand superfamily member 12	APO3L,DR3LG
+U2AF2		Splicing factor U2AF 65 kDa subunit	U2AF65
+RCC2		Protein RCC2	TD60
+BCLAF3		BCLAF1 and THRAP3 family member 3	CXorf23
+ARID3A		AT-rich interactive domain-containing protein 3A	DRIL1,DRIL3,DRX,E2FBP1
+HIC1		Hypermethylated in cancer 1 protein	ZBTB29
+LCE6A		Late cornified envelope protein 6A	C1orf44
+CAMKK2		Calcium/calmodulin-dependent protein kinase kinase 2	CAMKKB
+FAM161A		Protein FAM161A	
+AP1AR	adaptor related protein complex 1 associated regulatory protein	AP-1 complex-associated regulatory protein	C4orf16
+SRP19		Signal recognition particle 19 kDa protein	
+TRPC6		Short transient receptor potential channel 6	TRP6
+SEPTIN12		Septin-12	SEPT12
+BCL2L13	BCL2 like 13	Bcl-2-like protein 13	MIL1,CD003
+DCP1A		mRNA-decapping enzyme 1A	SMIF
+SCLT1		Sodium channel and clathrin linker 1	SAP1
+RASEF		Ras and EF-hand domain-containing protein	RAB45
+CFAP206		Cilia- and flagella-associated protein 206	C6orf165
+FN1		Fibronectin	FN
+NOTCH1		Neurogenic locus notch homolog protein 1	TAN1
+ATP1B1		Sodium/potassium-transporting ATPase subunit beta-1	ATP1B
+FTO		Alpha-ketoglutarate-dependent dioxygenase FTO	
+NREP		Neuronal regeneration-related protein	C5orf13,P311
+H3C14		Histone H3.2	H3C15,HIST2H3A;,H3F2,H3FM
+FRMD4B		FERM domain-containing protein 4B	GRSP1
+OR56A4		Olfactory receptor 56A4	
+CD63		CD63 antigen	MLA1,TSPAN30
+FOXA1		Hepatocyte nuclear factor 3-alpha	HNF3A,TCF3A
+IFITM10		Interferon-induced transmembrane protein 10	
+CPHXL2		Cytoplasmic polyadenylated homeobox-like protein 2	
+TMEM169		Transmembrane protein 169	
+XXYLT1		Xyloside xylosyltransferase 1	C3orf21,PSEC0251
+EFNB3		Ephrin-B3	EPLG8,LERK8
+LRIT2		Leucine-rich repeat, immunoglobulin-like domain and transmembrane domain-containing protein 2	LRRC22
+ZBTB48		Zinc finger and BTB domain-containing protein 48	HKR3,TZAP,ZNF855
+GPM6B		Neuronal membrane glycoprotein M6-b	M6B
+ENTPD6		Ectonucleoside triphosphate diphosphohydrolase 6	CD39L2,IL6ST2
+HAS2		Hyaluronan synthase 2	
+NEDD4		E3 ubiquitin-protein ligase NEDD4	NEDD4-1,RPF1,PIG53
+GLYR1		Cytokine-like nuclear factor N-PAC	HIBDL,NDF,NP60,NPAC
+ZFYVE1		Zinc finger FYVE domain-containing protein 1	DFCP1,TAFF1,ZNFN2A1,PP10436
+LRP11		Low-density lipoprotein receptor-related protein 11	
+MAB21L1		Putative nucleotidyltransferase MAB21L1	CAGR1,Nbla00126
+LAMA4		Laminin subunit alpha-4	
+FER1L6		Fer-1-like protein 6	C8orfK23
+BNIP2		BCL2/adenovirus E1B 19 kDa protein-interacting protein 2	NIP2
+GLMP		Glycosylated lysosomal membrane protein	C1orf85,PSEC0030
+MIER1		Mesoderm induction early response protein 1	
+DPF1		Zinc finger protein neuro-d4	BAF45B,NEUD4
+MIER2		Mesoderm induction early response protein 2	
+AGFG2	ArfGAP with FG repeats 2	Arf-GAP domain and FG repeat-containing protein 2	HRBL,RABR
+FEZ2		Fasciculation and elongation protein zeta-2	
+WDR31		WD repeat-containing protein 31	
+CLHC1		Clathrin heavy chain linker domain-containing protein 1	C2orf63
+CRACDL		CRACD-like protein	C2orf55
+CMTR2		Cap-specific mRNA (nucleoside-2'-O-)-methyltransferase 2	AFT,FTSJD1
+IMPDH2		Inosine-5'-monophosphate dehydrogenase 2	IMPD2
+CDC7		Cell division cycle 7-related protein kinase	CDC7L1
+CXCL14		C-X-C motif chemokine 14	MIP2G,NJAC,SCYB14,PSEC0212
+CYREN		Cell cycle regulator of non-homologous end joining	C7orf49,MRI
+RTN4RL1		Reticulon-4 receptor-like 1	NGRH2,NGRL2
+ATXN8		Ataxin-8	
+USP17L25			
+STAM		Signal transducing adapter molecule 1	STAM1
+OR52B2		Olfactory receptor 52B2	
+ATG2A		Autophagy-related protein 2 homolog A	
+C11orf86		Uncharacterized protein C11orf86	
+CASP2		Caspase-2	ICH1,NEDD2
+ATP11B		Phospholipid-transporting ATPase IF	ATPIF,ATPIR
+TRPC5		Short transient receptor potential channel 5	TRP5
+AURKAIP1		Small ribosomal subunit protein bS22, mitochondrial	AIP,AKIP,MRPS38
+FAM90A13		Protein FAM90A13	FAM90A13P
+SIK2		Serine/threonine-protein kinase SIK2	QIK,SNF1LK2
+ZC3H11C		Zinc finger CCCH domain-containing protein 11C	
+GATB		Glutamyl-tRNA(Gln) amidotransferase subunit B, mitochondrial	PET112,PET112L
+KDM4F		Probable lysine-specific demethylase 4F	
+PPIAL4F		Peptidyl-prolyl cis-trans isomerase A-like 4F	
+JADE3		Protein Jade-3	PHF16
+OR51I1		Olfactory receptor 51I1	
+DUSP16	dual specificity phosphatase 16	Dual specificity protein phosphatase 16	MKP7
+SEC16B		Protein transport protein Sec16B	LZTR2,RGPR,SEC16S
+RPL24		Large ribosomal subunit protein eL24	
+COPS6		COP9 signalosome complex subunit 6	CSN6,HVIP
+MAP2K6		Dual specificity mitogen-activated protein kinase kinase 6	MEK6,MKK6,PRKMK6,SKK3
+MAGEB18		Melanoma-associated antigen B18	
+MEIOC		Meiosis-specific coiled-coil domain-containing protein MEIOC	C17orf104
+CCL16		C-C motif chemokine 16	ILINCK,NCC4,SCYA16
+ZBTB16		Zinc finger and BTB domain-containing protein 16	PLZF,ZNF145
+FAM114A2		Protein FAM114A2	C5orf3
+GRIN1		Glutamate receptor ionotropic, NMDA 1	NMDAR1
+DLK2		Protein delta homolog 2	EGFL9
+SLC44A3		Choline transporter-like protein 3	CTL3
+GPRC5B		G protein-coupled receptor family C group 5 member B	RAIG2
+WNT5A		Protein Wnt-5a	
+ASNS		Asparagine synthetase [glutamine-hydrolyzing]	TS11
+DLX4		Homeobox protein DLX-4	BP1,DLX7,DLX8,DLX9
+UGGT1		UDP-glucose:glycoprotein glucosyltransferase 1	GT,UGCGL1,UGGT,UGT1
+ASPM		Abnormal spindle-like microcephaly-associated protein	MCPH5
+OR2T4		Olfactory receptor 2T4	
+OR10G8		Olfactory receptor 10G8	
+KCNK4		Potassium channel subfamily K member 4	TRAAK
+OR4K13		Olfactory receptor 4K13	
+POU5F1B		POU domain, class 5, transcription factor 1B	OCT4PG1,OTF3C,OTF3P1,POU5F1P1
+NLRC3		NLR family CARD domain-containing protein 3	NOD3
+TNNI2		Troponin I, fast skeletal muscle	
+ADCK2	aarF domain containing kinase 2	Uncharacterized aarF domain-containing protein kinase 2	AARF
+MTCP1		Protein p13 MTCP-1	C6.1B
+EMILIN1		EMILIN-1	EMI
+PPP1R3G		Protein phosphatase 1 regulatory subunit 3G	
+WDR83		WD repeat domain-containing protein 83	MORG1
+TMEM156		Transmembrane protein 156	
+SPANXN2		Sperm protein associated with the nucleus on the X chromosome N2	
+IGFBP4		Insulin-like growth factor-binding protein 4	IBP4
+APELA	apelin receptor early endogenous ligand	Apelin receptor early endogenous ligand	ELA,TDL
+RPP38		Ribonuclease P protein subunit p38	
+TRIM64C	tripartite motif containing 64C	Tripartite motif-containing protein 64C	
+GCC1		GRIP and coiled-coil domain-containing protein 1	
+PLAC8L1		PLAC8-like protein 1	
+CAMK1D		Calcium/calmodulin-dependent protein kinase type 1D	CAMKID
+DUS4L		tRNA-dihydrouridine(20a/20b) synthase [NAD(P)+]-like	
+CCNYL1B		Cyclin-Y-like protein 1B	
+MTCH2		Mitochondrial carrier homolog 2	MIMP
+DIPK1C		Divergent protein kinase domain 1C	C18orf51,FAM69C
+KCTD2	potassium channel tetramerization domain containing 2	BTB/POZ domain-containing protein KCTD2	
+DRG1		Developmentally-regulated GTP-binding protein 1	NEDD3
+SCARF1		Scavenger receptor class F member 1	SREC
+PCGF5		Polycomb group RING finger protein 5	RNF159
+GMPR2		GMP reductase 2	
+TFDP2		Transcription factor Dp-2	DP2
+KLHL28		Kelch-like protein 28	BTBD5
+PNRC1		Proline-rich nuclear receptor coactivator 1	PROL2
+TFF1		Trefoil factor 1	BCEI,PS2
+CDK7		Cyclin-dependent kinase 7	CAK,CAK1,CDKN7,MO15
+C17orf114		Uncharacterized protein C17orf114	
+AZI2		5-azacytidine-induced protein 2	NAP1,TBKBP2
+OR10G3		Olfactory receptor 10G3	
+LZTS1		Leucine zipper putative tumor suppressor 1	FEZ1
+REC114	REC114 meiotic recombination protein	Meiotic recombination protein REC114	C15orf60
+KIR3DL3		Killer cell immunoglobulin-like receptor 3DL3	CD158Z,KIR3DL7,KIRC1
+CHRNA4		Neuronal acetylcholine receptor subunit alpha-4	NACRA4
+KRTAP16-1		Keratin-associated protein 16-1	KAP16.1
+HIGD1B		HIG1 domain family member 1B	
+SERINC4		Serine incorporator 4	
+MAGEB17		Melanoma-associated antigen B17	
+ATP6V0D1		V-type proton ATPase subunit d 1	ATP6D,VPATPD
+HSP90AB1		Heat shock protein HSP 90-beta	HSP90B
+ZSCAN22		Zinc finger and SCAN domain-containing protein 22	HKR2,ZNF50
+WNT3		Proto-oncogene Wnt-3	INT4
+ESRRA		Steroid hormone receptor ERR1	ERR1,ESRL1,NR3B1
+MGAT2		Alpha-1,6-mannosyl-glycoprotein 2-beta-N-acetylglucosaminyltransferase	
+DDHD1		Phospholipase DDHD1	
+TIMM8A		Mitochondrial import inner membrane translocase subunit Tim8 A	DDP,DDP1,TIM8A
+ENDOV	endonuclease V	Endonuclease V	
+RNF185		E3 ubiquitin-protein ligase RNF185	
+KLHL24		Kelch-like protein 24	DRE1
+ZNF22	zinc finger protein 22	Zinc finger protein 22	KOX15,KROX26
+FRYL	FRY like transcription coactivator	Protein furry homolog-like	AF4P12
+MT3		Metallothionein-3	
+AKAP19	A-kinase anchoring protein 19	A-kinase anchoring protein 19	C2orf88
+CCSER1		Serine-rich coiled-coil domain-containing protein 1	FAM190A
+STK17A		Serine/threonine-protein kinase 17A	DRAK1
+TJP2		Tight junction protein 2	X104,ZO2
+PDE7A		High affinity 3',5'-cyclic-AMP phosphodiesterase 7A	
+DNAAF5		Dynein axonemal assembly factor 5	HEATR2
+INPP5E		Phosphatidylinositol polyphosphate 5-phosphatase type IV	
+CDC14A		Dual specificity protein phosphatase CDC14A	
+SCN4A		Sodium channel protein type 4 subunit alpha	
+SLC6A3		Sodium-dependent dopamine transporter	DAT1
+PYGB		Glycogen phosphorylase, brain form	
+PLA2G4A		Cytosolic phospholipase A2	CPLA2,PLA2G4
+LTB4R2		Leukotriene B4 receptor 2	BLT2R,BLTR2
+FRG2C		Protein FRG2-like-2	
+FBXO27		F-box only protein 27	FBG5,FBX27
+RFX2		DNA-binding protein RFX2	
+ADAMTS10	ADAM metallopeptidase with thrombospondin type 1 motif 10	A disintegrin and metalloproteinase with thrombospondin motifs 10	
+ARHGAP19		Rho GTPase-activating protein 19	
+PRRG2		Transmembrane gamma-carboxyglutamic acid protein 2	PRGP2,TMG2
+RBL2		Retinoblastoma-like protein 2	RB2
+TEP1		Telomerase protein component 1	TLP1,TP1
+FBXO42	F-box protein 42	F-box only protein 42	FBX42,JFK
+UNK		RING finger protein unkempt homolog	ZC3H5,ZC3HDC5
+ERAS		GTPase ERas	HRAS2,HRASP
+PRLR		Prolactin receptor	
+ZNF345		Zinc finger protein 345	
+CT45A10		Cancer/testis antigen family 45 member A10	
+SCGB1D4		Secretoglobin family 1D member 4	
+DBX2		Homeobox protein DBX2	
+SLFN5		Schlafen family member 5	
+SLC6A2		Sodium-dependent noradrenaline transporter	NAT1,NET1,SLC6A5
+SYNGR2	synaptogyrin 2	Synaptogyrin-2	
+TLR7		Toll-like receptor 7	
+HAPLN1		Hyaluronan and proteoglycan link protein 1	CRTL1
+ORMDL1		ORM1-like protein 1	
+SH3YL1		SH3 domain-containing YSC84-like protein 1	
+BCL7B		B-cell CLL/lymphoma 7 protein family member B	
+ARID5B		AT-rich interactive domain-containing protein 5B	DESRT,MRF2
+IL17F		Interleukin-17F	
+RNF169		E3 ubiquitin-protein ligase RNF169	
+ZMAT2		Zinc finger matrin-type protein 2	
+OR4C11		Olfactory receptor 4C11	OR4C11P
+C1orf141		Uncharacterized protein C1orf141	
+ADGRB1	adhesion G protein-coupled receptor B1	Adhesion G protein-coupled receptor B1	BAI1
+TTLL5		Tubulin polyglutamylase TTLL5	STAMP
+ALDH4A1	aldehyde dehydrogenase 4 family member A1	Delta-1-pyrroline-5-carboxylate dehydrogenase, mitochondrial	ALDH4,P5CDH
+CD200		OX-2 membrane glycoprotein	MOX1,MOX2,My033
+TMLHE		Trimethyllysine dioxygenase, mitochondrial	TMLH
+TRIM26		Tripartite motif-containing protein 26	RNF95,ZNF173
+DCTN1		Dynactin subunit 1	
+SLC35A1		CMP-sialic acid transporter	
+GNA12		Guanine nucleotide-binding protein subunit alpha-12	
+OR10X1		Olfactory receptor 10X1	OR10X1P
+TUBA1C		Tubulin alpha-1C chain	TUBA6
+H2AC12		Histone H2A type 1-H	HIST1H2AH,HIST1H2AI
+KRTAP1-3		Keratin-associated protein 1-3	B2B,KAP1.2,KAP1.3,KAP1.8
+TAS2R9		Taste receptor type 2 member 9	
+TANGO2		Transport and Golgi organization protein 2 homolog	C22orf25
+LYNX1		Ly-6/neurotoxin-like protein 1	
+PTPRF		Receptor-type tyrosine-protein phosphatase F	LAR
+PLCB1		1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1	
+CRMP1		Dihydropyrimidinase-related protein 1	DPYSL1,ULIP3
+SLA2		Src-like-adapter 2	C20orf156,SLAP2
+LMTK2		Serine/threonine-protein kinase LMTK2	AATYK2,BREK,KPI2,LMR2
+FSD1		Fibronectin type III and SPRY domain-containing protein 1	GLFND,MIR1,VLP27
+SPEGNB		SPEG neighbor protein	
+IRAG1		Inositol 1,4,5-triphosphate receptor associated 1	IRAG,JAW1L,MRVI1
+HDHD3		Haloacid dehalogenase-like hydrolase domain-containing protein 3	C9orf158
+SH3RF2		E3 ubiquitin-protein ligase SH3RF2	POSH3,POSHER,PPP1R39,RNF158
+SAMD12		Sterile alpha motif domain-containing protein 12	
+OR10V1		Olfactory receptor 10V1	
+GRAP		GRB2-related adapter protein	
+PNO1		RNA-binding protein PNO1	
+HCN1	hyperpolarization activated cyclic nucleotide gated potassium channel 1	Potassium/sodium hyperpolarization-activated cyclic nucleotide-gated channel 1	BCNG1
+TMEM38A		Trimeric intracellular cation channel type A	TRICA
+ID4		DNA-binding protein inhibitor ID-4	BHLHB27
+UTP4		U3 small nucleolar RNA-associated protein 4 homolog	CIRH1A,cPERP-E
+ZIK1		Zinc finger protein interacting with ribonucleoprotein K	ZNF762
+LAMA1		Laminin subunit alpha-1	LAMA
+TRAK1		Trafficking kinesin-binding protein 1	OIP106
+RUNX1T1		Protein CBFA2T1	AML1T1,CBFA2T1,CDR,ETO
+MAGEC1		Melanoma-associated antigen C1	
+FUT2		Galactoside alpha-(1,2)-fucosyltransferase 2	SEC2
+GPX2		Glutathione peroxidase 2	
+KDM5A		Lysine-specific demethylase 5A	JARID1A,RBBP2,RBP2
+AQP6		Aquaporin-6	AQP2L
+RANGAP1		Ran GTPase-activating protein 1	SD
+PRAMEF26		PRAME family member 26	
+KRT34		Keratin, type I cuticular Ha4	HHA4,HKA4,KRTHA4
+STK40		Serine/threonine-protein kinase 40	SGK495,SHIK
+CABP2		Calcium-binding protein 2	
+SMC6		Structural maintenance of chromosomes protein 6	SMC6L1
+SYT15B		Synaptotagmin-15B	
+MGME1		Mitochondrial genome maintenance exonuclease 1	C20orf72,DDK1
+OVCH2		Ovochymase-2	OVTN
+CLSTN1		Calsyntenin-1	CS1
+PSMD5		26S proteasome non-ATPase regulatory subunit 5	
+TM4SF19		Transmembrane 4 L6 family member 19	OCTM4
+KAZN		Kazrin	C1orf196,KAZ,HRIHFB2003
+CEP43		Centrosomal protein 43	FGFR1OP,FOP
+IL37		Interleukin-37	FIL1Z,IL1F7,IL1H4,IL1RP1
+ANKRD29	ankyrin repeat domain 29	Ankyrin repeat domain-containing protein 29	
+B3GLCT		Beta-1,3-glucosyltransferase	B3GALTL,B3GTL
+SEC31B		Protein transport protein Sec31B	SEC31L2
+TBC1D17		TBC1 domain family member 17	
+SMIM17		Small integral membrane protein 17	
+RIPPLY2		Protein ripply2	C6orf159
+MRPL54		Large ribosomal subunit protein mL54	
+UBE2D2	ubiquitin conjugating enzyme E2 D2	Ubiquitin-conjugating enzyme E2 D2	PUBC1,UBC4,UBC5B,UBCH4
+MUC8			
+NOS2		Nitric oxide synthase, inducible	NOS2A
+JOSD2		Josephin-2	SBBI54
+PTDSS1		Phosphatidylserine synthase 1	PSSA
+PKN1		Serine/threonine-protein kinase N1	PAK1,PKN,PRK1,PRKCL1
+GSTO2		Glutathione S-transferase omega-2	
+TESPA1		Protein TESPA1	
+NDUFAF8		NADH dehydrogenase [ubiquinone] 1 alpha subcomplex assembly factor 8	C17orf89
+PLA2G2A		Phospholipase A2, membrane associated	PLA2B,PLA2L,RASF-A
+TNFRSF17		Tumor necrosis factor receptor superfamily member 17	BCM,BCMA
+SCN5A		Sodium channel protein type 5 subunit alpha	
+CYP2U1		Cytochrome P450 2U1	
+ASB1		Ankyrin repeat and SOCS box protein 1	
+ATG13		Autophagy-related protein 13	
+SULT2B1		Sulfotransferase 2B1	HSST2
+TAPBP		Tapasin	NGS17,TAPA
+PLAA		Phospholipase A-2-activating protein	PLAP
+CT47A4		Cancer/testis antigen 47A	CT47A1,CT47.1;,CT47A2,CT47.2;
+SARAF		Store-operated calcium entry-associated regulatory factor	TMEM66,XTP3,NPD003,PSEC0019
+TPGS2		Tubulin polyglutamylase complex subunit 2	C18orf10,HMFN0601,L17
+ETDA		Embryonic testis differentiation protein homolog A	
+DNAJC15		DnaJ homolog subfamily C member 15	DNAJD1,GIG22,HSD18
+MINAR2		Major intrinsically disordered NOTCH2-binding receptor 1-like	
+KRT1	keratin 1	Keratin, type II cytoskeletal 1	KRTA
+TMEM39B		Transmembrane protein 39B	
+GCSAM		Germinal center-associated signaling and motility protein	GAL,GCET2
+PPIE		Peptidyl-prolyl cis-trans isomerase E	CYP33
+GLO1		Lactoylglutathione lyase	
+OR2AG1	olfactory receptor family 2 subfamily AG member 1	Olfactory receptor 2AG1	OR2AG3
+REDIC1		Regulator of DNA class I crossover intermediates 1	C12orf40
+FTMT		Ferritin, mitochondrial	
+GCGR		Glucagon receptor	
+GRXCR1		Glutaredoxin domain-containing cysteine-rich protein 1	DFNB25
+ATP2B3		Plasma membrane calcium-transporting ATPase 3	
+RBM14		RNA-binding protein 14	SIP
+RNF2		E3 ubiquitin-protein ligase RING2	BAP1,DING,HIPI3,RING1B
+TMEM115		Transmembrane protein 115	PL6,LUCA11.2
+SDF2L1		Stromal cell-derived factor 2-like protein 1	
+MED29		Mediator of RNA polymerase II transcription subunit 29	IXL
+RXRA		Retinoic acid receptor RXR-alpha	NR2B1
+NUDT4		Diphosphoinositol polyphosphate phosphohydrolase 2	DIPP2,HDCMB47P
+SLC49A4		Solute carrier family 49 member 4	DIRC2
+FASTKD1		FAST kinase domain-containing protein 1, mitochondrial	
+KNOP1		Lysine-rich nucleolar protein 1	C16orf88,FAM191A,TSG118
+HAO1		2-Hydroxyacid oxidase 1	GOX1
+TADA2B		Transcriptional adapter 2-beta	ADA2B
+DEFB105B		Beta-defensin 105	DEFB105A,BD5,DEFB105,DEFB5;
+OR2T35		Olfactory receptor 2T35	
+CASZ1		Zinc finger protein castor homolog 1	CST,SRG,ZNF693
+ITGAM		Integrin alpha-M	CD11B,CR3A
+CIAO2B		Cytosolic iron-sulfur assembly component 2B	CIAB,FAM96B,MIP18
+RBMX		RNA-binding motif protein, X chromosome	HNRPG,RBMXP1
+TCP11X1		T-complex protein 11-like X-linked protein 1	
+LGALS3		Galectin-3	MAC2
+TCAIM		T-cell activation inhibitor, mitochondrial	C3orf23,TOAG1
+FMNL1		Formin-like protein 1	C17orf1,C17orf1B,FMNL,FRL1
+RBM44		RNA-binding protein 44	
+PI4KA	phosphatidylinositol 4-kinase alpha	Phosphatidylinositol 4-kinase alpha	PIK4,PIK4CA
+SLC25A32		Solute carrier family 25 member 32	MFT,MFTC
+AP1S2	adaptor related protein complex 1 subunit sigma 2	AP-1 complex subunit sigma-2	DC22
+RCBTB1		RCC1 and BTB domain-containing protein 1	CLLD7,E4.5
+TMEM201		Transmembrane protein 201	NET5,SAMP1
+ASTN1		Astrotactin-1	ASTN
+GGNBP2		Gametogenetin-binding protein 2	LCRG1,LZK1,ZNF403
+UBE2L5		Ubiquitin-conjugating enzyme E2 L5	
+FREM3		FRAS1-related extracellular matrix protein 3	
+OR5D18		Olfactory receptor 5D18	
+GRID2		Glutamate receptor ionotropic, delta-2	GLURD2
+ASIP		Agouti-signaling protein	AGTI,AGTIL,ASP
+NPIPB15		Nuclear pore complex-interacting protein family member B15	NPIPL2
+ING3		Inhibitor of growth protein 3	
+LDB2		LIM domain-binding protein 2	CLIM1
+DNAAF8		Dynein axonemal assembly factor 8	C16orf71,DAAP1
+MLN		Promotilin	
+CERS3		Ceramide synthase 3	LASS3
+NUDT6		Nudix hydrolase 6	FGF2AS
+LTA		Lymphotoxin-alpha	TNFB,TNFSF1
+SEM1	SEM1 26S proteasome subunit	26S proteasome complex subunit SEM1	C7orf76,DSS1,SHFDG1,SHFM1
+DDRGK1		DDRGK domain-containing protein 1	C20orf116,UFBP1
+KCNJ5		G protein-activated inward rectifier potassium channel 4	GIRK4
+WASF1		Actin-binding protein WASF1	SCAR1,WAVE1
+DHODH		Dihydroorotate dehydrogenase (quinone), mitochondrial	
+KLRB1		Killer cell lectin-like receptor subfamily B member 1	CLEC5B,NKRP1A
+GLT8D2		Glycosyltransferase 8 domain-containing protein 2	GALA4A
+BEST1		Bestrophin-1	VMD2
+ADGRL3	adhesion G protein-coupled receptor L3	Adhesion G protein-coupled receptor L3	LEC3,LPHN3
+OR10H2		Olfactory receptor 10H2	
+POU2AF3		POU class 2 homeobox associating factor 3	C11orf93,CASC13,COLCA2
+UFC1		Ubiquitin-fold modifier-conjugating enzyme 1	
+TAS2R38		Taste receptor type 2 member 38	PTC
+COL9A2		Collagen alpha-2(IX) chain	
+PNCK		Calcium/calmodulin-dependent protein kinase type 1B	
+SLC25A25		Mitochondrial adenyl nucleotide antiporter SLC25A25	APC3,MCSC3,SCAMC2
+TP53TG3B			
+ARPC2		Actin-related protein 2/3 complex subunit 2	ARC34
+MDP1		Magnesium-dependent phosphatase 1	
+PLIN5		Perilipin-5	LSDP5,OXPAT,PAT-1
+CYP2S1		Cytochrome P450 2S1	
+ANXA1	annexin A1	Annexin A1	ANX1,LPC1
+TMC3		Transmembrane channel-like protein 3	
+RHBDF1		Inactive rhomboid protein 1	C16orf8,DIST1,IRHOM1
+CFAP221		Cilia- and flagella-associated protein 221	PCDP1
+ALDH1A1	aldehyde dehydrogenase 1 family member A1	Aldehyde dehydrogenase 1A1	ALDC,ALDH1,PUMB1
+GTF3C4		General transcription factor 3C polypeptide 4	
+PCLO		Protein piccolo	ACZ
+RNASET2		Ribonuclease T2	RNASE6PL
+H2BC13		Histone H2B type 1-L	H2BFC,HIST1H2BL
+BBS4		BBSome complex member BBS4	
+EFCAB6		EF-hand calcium-binding domain-containing protein 6	DJBP
+DPP9		Dipeptidyl peptidase 9	DPRP2
+ST6GALNAC5		Alpha-N-acetylgalactosaminide alpha-2,6-sialyltransferase 5	SIAT7E
+MYBL1		Myb-related protein A	AMYB
+ZNF606		Zinc finger protein 606	ZNF328
+SLIT3		Slit homolog 3 protein	MEGF5,SLIL2
+CKMT2		Creatine kinase S-type, mitochondrial	
+OSBPL6		Oxysterol-binding protein-related protein 6	ORP6
+CBY3		Sperm annulus positioning complex subunit Chibby3	
+COX6C		Cytochrome c oxidase subunit 6C	
+TP53BP1		TP53-binding protein 1	
+SLC16A8		Monocarboxylate transporter 3	MCT3
+TXNL4B		Thioredoxin-like protein 4B	DIM2,DLP
+FKBP8		Peptidyl-prolyl cis-trans isomerase FKBP8	FKBP38
+SPC25	SPC25 component of NDC80 kinetochore complex	Kinetochore protein Spc25	SPBC25,AD024
+SERPINF1		Pigment epithelium-derived factor	PEDF,PIG35
+KHDC4		KH homology domain-containing protein 4	BLOM7,SNORA80EHG
+PRKRA		Interferon-inducible double-stranded RNA-dependent protein kinase activator A	PACT,RAX,HSD-14,HSD14
+SETD3		Actin-histidine N-methyltransferase	C14orf154
+HNMT		Histamine N-methyltransferase	
+HYI		Putative hydroxypyruvate isomerase	HT036,SB156
+CARD11		Caspase recruitment domain-containing protein 11	CARMA1
+RGS21		Regulator of G protein signaling 21	
+DCK	deoxycytidine kinase	Deoxycytidine kinase	
+ZNF77	zinc finger protein 77	Zinc finger protein 77	
+HNRNPK		Heterogeneous nuclear ribonucleoprotein K	HNRPK
+PLAAT4		Phospholipase A and acyltransferase 4	RARRES3,RIG1,TIG3
+ZNF507	zinc finger protein 507	Zinc finger protein 507	
+DMBT1		Scavenger receptor cysteine-rich domain-containing protein DMBT1	GP340
+SRFBP1		Serum response factor-binding protein 1	
+AMY1A	amylase alpha 1A	Alpha-amylase 1A	AMY1
+TCEA1		Transcription elongation factor A protein 1	GTF2S,TFIIS
+TMEM266		Transmembrane protein 266	C15orf27,HVRP1
+FSD1L		FSD1-like protein	CCDC10,CSDUFD1,FSD1CL,FSD1NL
+GAK		Cyclin-G-associated kinase	DNAJC26
+ADGRL2	adhesion G protein-coupled receptor L2	Adhesion G protein-coupled receptor L2	LEC1,LPHH1,LPHN2
+DEGS2		Sphingolipid delta(4)-desaturase/C4-monooxygenase DES2	C14orf66
+SLC9C1		Solute carrier family 9 member C1	SLC9A10
+RPGR		X-linked retinitis pigmentosa GTPase regulator	RP3,XLRP3
+PDZD7		PDZ domain-containing protein 7	PDZK7
+KYAT3		Kynurenine--oxoglutarate transaminase 3	CCBL2,KAT3
+GOLGA8H		Golgin subfamily A member 8H	
+MST1		Hepatocyte growth factor-like protein	D3F15S2,DNF15S2,HGFL
+CASP9		Caspase-9	MCH6
+RAB8B		Ras-related protein Rab-8B	
+NEUROD4		Neurogenic differentiation factor 4	ATH3,ATOH3,BHLHA4
+RPS27A		Ubiquitin-ribosomal protein eS31 fusion protein	UBA80,UBCEP1
+FXYD3		FXYD domain-containing ion transport regulator 3	MAT8,PLML
+BEX4		Protein BEX4	BEXL1,NADE3
+TMEM50B		Transmembrane protein 50B	C21orf4
+CARD14		Caspase recruitment domain-containing protein 14	CARMA2
+TNS1		Tensin-1	TNS
+SIDT2		SID1 transmembrane family member 2	PSEC0072
+WDR26		WD repeat-containing protein 26	CDW2,MIP2
+ABHD14A	abhydrolase domain containing 14A	Protein ABHD14A	
+MT-ND5		NADH-ubiquinone oxidoreductase chain 5	MTND5,NADH5,ND5
+CD101		Immunoglobulin superfamily member 2	EWI101,IGSF2,V7
+DIS3L2		DIS3-like exonuclease 2	FAM6A
+SIAH1		E3 ubiquitin-protein ligase SIAH1	HUMSIAH
+LINGO3		Leucine-rich repeat and immunoglobulin-like domain-containing nogo receptor-interacting protein 3	LERN2,LRRN6B
+CA7		Carbonic anhydrase 7	
+BHMT		Betaine--homocysteine S-methyltransferase 1	
+CFAP107		Cilia- and flagella-associated protein 107	C1orf158
+MROH2B		Maestro heat-like repeat-containing protein family member 2B	HEATR7B2
+ZNF764		Zinc finger protein 764	
+SEMA5B		Semaphorin-5B	SEMAG
+MMP24		Matrix metalloproteinase-24	MT5MMP
+FMNL2		Formin-like protein 2	FHOD2
+SNX17		Sorting nexin-17	
+FMN2		Formin-2	
+ARG2		Arginase-2, mitochondrial	
+SPDL1		Protein Spindly	CCDC99
+EOLA2		Protein EOLA2	CXorf40B
+LCE3B		Late cornified envelope protein 3B	LEP14
+BMX	BMX non-receptor tyrosine kinase	Cytoplasmic tyrosine-protein kinase BMX	
+PRDM5		PR domain zinc finger protein 5	PFM2
+PBXIP1		Pre-B-cell leukemia transcription factor-interacting protein 1	HPIP
+CBFA2T2		Protein CBFA2T2	EHT,MTGR1
+MSTN		Growth/differentiation factor 8	GDF8
+ATL2		Atlastin-2	ARL6IP2
+SEPTIN2		Septin-2	DIFF6,NEDD5,SEPT2
+MDH1B		Putative malate dehydrogenase 1B	
+RCHY1		RING finger and CHY zinc finger domain-containing protein 1	ARNIP,CHIMP,PIRH2,RNF199
+PRELID3B		PRELI domain containing protein 3B	C20orf45,SLMO2
+CES5A		Carboxylesterase 5A	CES7
+C16orf54		Transmembrane protein C16orf54	
+CDC25C		M-phase inducer phosphatase 3	
+PTMA		Prothymosin alpha	TMSA
+CD320		CD320 antigen	8D6A
+MAGEE1		Melanoma-associated antigen E1	HCA1
+SLC39A1		Zinc transporter ZIP1	IRT1,ZIP1,ZIRTL
+PKNOX2		Homeobox protein PKNOX2	PREP2
+METRNL		Meteorin-like protein	
+MEA1		Male-enhanced antigen 1	MEA
+HSPH1		Heat shock protein 105 kDa	HSP105,HSP110
+ZBTB45		Zinc finger and BTB domain-containing protein 45	ZNF499
+SLC35E4		Solute carrier family 35 member E4	
+KCNMB4		Calcium-activated potassium channel subunit beta-4	
+COX6A1		Cytochrome c oxidase subunit 6A1, mitochondrial	COX6AL
+ZDHHC18		Palmitoyltransferase ZDHHC18	
+TSPAN19		Tetraspanin-19	
+SHISA6		Protein shisa-6	
+CBLL2		E3 ubiquitin-protein ligase CBLL2	ZNF645
+MVP		Major vault protein	LRP
+RSAD2		S-adenosylmethionine-dependent nucleotide dehydratase RSAD2	CIG5
+UCHL1		Ubiquitin carboxyl-terminal hydrolase isozyme L1	
+THAP1	THAP domain containing 1	THAP domain-containing protein 1	
+ITM2A	integral membrane protein 2A	Integral membrane protein 2A	
+ISLR2		Immunoglobulin superfamily containing leucine-rich repeat protein 2	LINX
+UCN3		Urocortin-3	SPC
+RAP2A		Ras-related protein Rap-2a	
+DARS1		Aspartate--tRNA ligase, cytoplasmic	DARS,PIG40
+NOL4L		Nucleolar protein 4-like	C20orf112,C20orf113
+YARS2		Tyrosine--tRNA ligase, mitochondrial	
+MYO7A		Unconventional myosin-VIIa	USH1B
+ASCL2		Achaete-scute homolog 2	BHLHA45,HASH2
+ZNF862		Zinc finger protein 862	
+DEFA3		Neutrophil defensin 3	DEF3
+KCNA5		Potassium voltage-gated channel subfamily A member 5	
+CDC14B		Dual specificity protein phosphatase CDC14B	
+TAS2R4		Taste receptor type 2 member 4	
+LRRC69		Leucine-rich repeat-containing protein 69	
+CITED2		Cbp/p300-interacting transactivator 2	MRG1
+PDIA6		Protein disulfide-isomerase A6	ERP5,P5,TXNDC7
+MSRB3		Methionine-R-sulfoxide reductase B3	
+H4C9		Histone H4	H4C1,H4FA,HIST1H4A;,H4C2
+ARL5A		ADP-ribosylation factor-like protein 5A	ARFLP5,ARL5
+CEACAM16		Cell adhesion molecule CEACAM16	CEAL2
+HSPB8		Heat shock protein beta-8	CRYAC,E2IG1,HSP22,PP1629
+ELAVL1		ELAV-like protein 1	HUR
+ZBTB7A		Zinc finger and BTB domain-containing protein 7A	FBI1,LRF,ZBTB7,ZNF857A
+BCLAF1		Bcl-2-associated transcription factor 1	BTF
+RBM5		RNA-binding protein 5	H37,LUCA15
+CRIPTO		Protein Cripto	CRIPTO-1,TDGF1
+TMEM116		Transmembrane protein 116	
+PRAG1	PEAK1 related, kinase-activating pseudokinase 1	Inactive tyrosine-protein kinase PRAG1	SGK223
+HACD3		Very-long-chain (3R)-3-hydroxyacyl-CoA dehydratase 3	BIND1,PTPLAD1
+ABI2	abl interactor 2	Abl interactor 2	ARGBPIA
+PPP1R2		Protein phosphatase inhibitor 2	IPP2
+IFI27L2		Interferon alpha-inducible protein 27-like protein 2	FAM14A,TLH29
+NF2		Merlin	SCH
+GLA	galactosidase alpha	Alpha-galactosidase A	
+GMPR		GMP reductase 1	GMPR1
+ELP4		Elongator complex protein 4	C11orf19,PAXNEB
+IQCN	IQ motif containing N	IQ domain-containing protein N	
+EIF4EBP2		Eukaryotic translation initiation factor 4E-binding protein 2	
+MCM4		DNA replication licensing factor MCM4	CDC21
+MYL5		Myosin light chain 5	
+SSR4		Translocon-associated protein subunit delta	TRAPD
+GLT1D1		Glycosyltransferase 1 domain-containing protein 1	
+ZNF300	zinc finger protein 300	Zinc finger protein 300	
+RPL19		Large ribosomal subunit protein eL19	
+ANKRD30A		Ankyrin repeat domain-containing protein 30A	
+ST6GALNAC2		Alpha-N-acetylgalactosaminide alpha-2,6-sialyltransferase 2	SIAT7B,SIATL1,STHM
+CIRSR		Corepressor of RBPJ and splicing regulator	CIR,CIR1

@@ -1002,3 +1002,7 @@ ZNF77	zinc finger protein 77	Zinc finger protein 77
 ZNF844	zinc finger protein 844	Zinc finger protein 844
 ZNF845	zinc finger protein 845	Zinc finger protein 845
 ZNG1A	Zn regulated GTPase metalloprotein activator 1A	Zinc-regulated GTPase metalloprotein activator 1A
+# 追加（2026-09-13）: シスチン尿症で臨床的に検討されている標的。原因遺伝子を直すのではなく、
+#   尿量を増やしてシスチンを薄める別の仕組み。Open Targets では 0.047 と低く出るが本物の候補。
+#   AVPR2（tolvaptan）NCT02538016 完了。同じ理由の SLC5A2（dapagliflozin）NCT04818034 は既に収載。
+AVPR2	arginine vasopressin receptor 2	Vasopressin V2 receptor

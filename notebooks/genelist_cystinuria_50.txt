@@ -52,3 +52,7 @@ CYP4A22	cytochrome P450 family 4 subfamily A member 22	Cytochrome P450 4A22
 AQP11	aquaporin 11	Aquaporin-11
 ATP6V1B1	ATPase H+ transporting V1 subunit B1	V-type proton ATPase subunit B, kidney isoform
 COL4A5	collagen type IV alpha 5 chain	Collagen alpha-5(IV) chain
+# 追加（2026-09-13）: シスチン尿症で臨床的に検討されている標的。原因遺伝子を直すのではなく、
+#   尿量を増やしてシスチンを薄める別の仕組み。Open Targets では 0.047 と低く出るが本物の候補。
+#   AVPR2（tolvaptan）NCT02538016 完了。同じ理由の SLC5A2（dapagliflozin）NCT04818034 は既に収載。
+AVPR2	arginine vasopressin receptor 2	Vasopressin V2 receptor

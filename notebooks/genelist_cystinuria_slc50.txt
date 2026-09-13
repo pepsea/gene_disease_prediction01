@@ -51,3 +51,7 @@ AGXT	alanine--glyoxylate aminotransferase	Alanine--glyoxylate aminotransferase
 CLDN2	claudin 2	Claudin-2
 LAMA5	laminin subunit alpha 5	Laminin subunit alpha-5
 WNK4	WNK lysine deficient protein kinase 4	Serine/threonine-protein kinase WNK4
+# 追加（2026-09-13）: シスチン尿症で臨床的に検討されている標的。原因遺伝子を直すのではなく、
+#   尿量を増やしてシスチンを薄める別の仕組み。Open Targets では 0.047 と低く出るが本物の候補。
+#   AVPR2（tolvaptan）NCT02538016 完了。同じ理由の SLC5A2（dapagliflozin）NCT04818034 は既に収載。
+AVPR2	arginine vasopressin receptor 2	Vasopressin V2 receptor
