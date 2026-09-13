@@ -1,0 +1,136 @@
+# gene_disease_ranking02.ipynb の設定。疾患と候補遺伝子以外はすべてここに書く。
+#
+# 流れ: 段階0 二値 → 段階1 選択式（群＋その他）→ 段階2 総当たり（第3の選択肢あり）
+# どの段階も「疾患メカニズムを並べて、遺伝子の活性を変えるとどれかの段階が変わるか」を聞く。
+# 「治療標的か」とは聞かない。既存の治療手段（低分子薬など）に引きずられないため。
+
+# 疾患（名前・メカニズム・答え合わせ）と候補遺伝子のファイルは、ノートブックの ① に書く。
+
+# ───────────────────────── Ollama とモデル ─────────────────────────
+ollama:
+  # 空なら環境変数 OLLAMA_HOST、それも無ければ localhost:11434。
+  # Ollama 流儀のスキーム無し（0.0.0.0:11434、ollama:11434）も読める。
+  host: ""
+  timeout_sec: 120
+
+models:
+  # 段階ごとに変えられる。空なら default を使う。
+  # 実測（このマシン、VRAM 17.8 GiB）: qwen3:14b 0.33 秒/件（段階0）、1.2 秒/回（段階1）、0.60 秒/回（段階2）
+  default: qwen3:14b
+  stage0: ""
+  stage1: ""
+  stage2: ""
+
+# ───────────────────────── 段階0: 二値スクリーニング ─────────────────────────
+stage0:
+  keep: 2000            # 段階1へ送る数。候補数以下なら全員を送る（スクリーニングはしても切らない）
+  question: "Would changing this gene's activity, in either direction, change any of these steps of the disease mechanism?"
+  progress_cycles: 20   # 進捗を何回に分けて表示するか
+
+# ───────────────────────── 段階1: 選択式 ─────────────────────────
+stage1:
+  group_size: 5         # 1 群の遺伝子数（「その他」を除く）。上限 25
+  # 絞り込みの小段階。keep = その小段階で残す数、appearances = 1 遺伝子あたりの登場回数。
+  # 最後の keep が段階2に送る数になる。1 回に 7 割より多く落とすと、
+  # 運悪く強い群に当たり続けた本物を落としやすい（ノートブックが警告する）。
+  rounds:
+    - {keep: 600, appearances: 5}
+    - {keep: 200, appearances: 10}
+  exit_option: true
+  exit_text: "Other / none of the above"
+  question: "Changing which gene's activity, in either direction, would change any of these steps of the disease mechanism?"
+  seed: 0
+
+# ───────────────────────── 段階2: 総当たり ─────────────────────────
+stage2:
+  both_ways: true       # A/B を入れ替えて 2 回聞き、選択肢の順番の偏りを打ち消す
+  # 「どちらも関係ない」を第3の選択肢として入れる。Bradley-Terry では仮想の対戦相手として
+  # 強さを推定し、それより弱い遺伝子を「関係ない」と判定できるようにする。
+  exit_option: true
+  exit_text: "Neither of these genes"
+  question: "Changing which gene's activity, in either direction, would change any of these steps of the disease mechanism?"
+  report_every: 200     # 何呼び出しごとに進捗と速度を出すか
+  slow_factor: 3.0      # 直近の速度が最速の何倍になったら遅延とみなすか
+  slow_min_sec: 2.0     # 秒/件がこれ未満なら倍率が高くても放っておく
+  max_resets: 5         # 自動リセットの上限
+
+# ───────────────────────── 選択肢の表示（段階1・2） ─────────────────────────
+display:
+  protein_names: true   # UniProt 推奨名。同族の区別に効く（実測 25/40 → 34/40）
+  gene_names: false     # HGNC 正式名。同族でほぼ同一の文言になり悪化する（実測 34/40 → 31/40）
+  aliases: true         # 遺伝子記号の別名（SLC22A12 → URAT1、SLC5A2 → SGLT2 など）
+  max_aliases: 4
+  alias_label: "aliases"
+
+# ───────────────────────── Bradley-Terry ─────────────────────────
+rating:
+  alpha: 0.5            # 仮想の引き分け。一度も勝てない遺伝子のレーティングが -inf に飛ぶのを防ぐ
+  none_label: "(none of these)"   # 「その他」「どちらも関係ない」を表す仮想の対戦相手の名前
+
+# ───────────────────────── few-shot（見本） ─────────────────────────
+# 本番と同じ形式で書く。形式が食い違うと、モデルが 1 文字ではなく文章を書き始める。
+# 遺伝子と薬の対応は ChEMBL で確認済み:
+#   CFTR   ivacaftor（CFTR positive modulator）
+#   DNASE1 dornase alfa（組換えヒト DNase-1）
+#   TNF    adalimumab（TNF 阻害）
+few_shot:
+  binary:
+    disease: Cystic fibrosis
+    mechanism:
+      - A defective chloride channel dehydrates the airway surface.
+      - Extracellular DNA released from dead immune cells makes airway mucus thick.
+    # 原因でない DNASE1 も Yes にして、「原因遺伝子だけが Yes」ではないと示す
+    examples:
+      - [CFTR, "Yes"]
+      - [APOE, "No"]
+      - [DNASE1, "Yes"]
+      - [HBB, "No"]
+  choice:
+    # 正解の文字を B と C に分ける（同じ文字に寄せると、その文字を選ぶ癖がつく）
+    - disease: Cystic fibrosis
+      mechanism:
+        - A defective chloride channel dehydrates the airway surface.
+        - Extracellular DNA released from dead immune cells makes airway mucus thick.
+      options: [HBB, CFTR, GPR52, APOE]
+      answer: CFTR
+    - disease: Rheumatoid arthritis
+      mechanism:
+        - Immune cells release inflammatory cytokines that inflame the joint lining.
+        - The inflamed joint lining erodes cartilage and bone.
+      options: [CFTR, HBB, TNF, GPR56]
+      answer: TNF
+  pair:
+    # 段階2（1 対 1）用。本番と同じく選択肢は 2 つ＋第3の選択肢。正解は B と A に分ける
+    - disease: Cystic fibrosis
+      mechanism:
+        - A defective chloride channel dehydrates the airway surface.
+        - Extracellular DNA released from dead immune cells makes airway mucus thick.
+      options: [HBB, CFTR]
+      answer: CFTR
+    - disease: Rheumatoid arthritis
+      mechanism:
+        - Immune cells release inflammatory cytokines that inflame the joint lining.
+        - The inflamed joint lining erodes cartilage and bone.
+      options: [TNF, GPR56]
+      answer: TNF
+  # few-shot に出る遺伝子の蛋白質名と別名（UniProt）
+  protein_names:
+    HBB: Hemoglobin subunit beta
+    CFTR: Cystic fibrosis transmembrane conductance regulator
+    GPR52: G-protein coupled receptor 52
+    APOE: Apolipoprotein E
+    TNF: Tumor necrosis factor
+    GPR56: Adhesion G-protein coupled receptor G1
+    DNASE1: Deoxyribonuclease-1
+  aliases:
+    CFTR: [ABCC7]
+    TNF: [TNFA, TNFSF2]
+    GPR56: [ADGRG1, TM7LN4, TM7XN1]
+    DNASE1: [DNL1, DRNI]
+
+# ───────────────────────── 保存と再開 ─────────────────────────
+output:
+  root: outputs         # この下に 日付-時刻/ を作る
+  # 途中から再開するときに既存の実行フォルダを入れる（例 "outputs/20260913-094403"）。
+  # 保存済みの段階は読むだけでモデルを呼ばず、段階2は済んだ対戦の続きから始める。
+  resume_dir: ""
