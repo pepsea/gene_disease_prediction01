@@ -1,0 +1,54 @@
+# schizophrenia 用の候補リスト（50 遺伝子・最終段階の検証用）
+# Open Targets (MONDO_0005090) の関連スコア上位 50。全て疾患関連候補なので、
+# 「生き残った候補どうしの比較」という最も難しい条件になる。
+# 形式: 記号<TAB>HGNC正式名<TAB>UniProt推奨タンパク質名
+DRD2	dopamine receptor D2	Dopamine receptor D2
+SHANK3	SH3 and multiple ankyrin repeat domains 3	SH3 and multiple ankyrin repeat domains protein 3
+RTN4R	reticulon 4 receptor	Reticulon-4 receptor
+DRD3	dopamine receptor D3	Dopamine receptor D3
+MTHFR	methylenetetrahydrofolate reductase	Methylenetetrahydrofolate reductase
+DRD4	dopamine receptor D4	Dopamine receptor D4
+HTR1A	5-hydroxytryptamine receptor 1A	5-hydroxytryptamine receptor 1A
+HTR2A	5-hydroxytryptamine receptor 2A	5-hydroxytryptamine receptor 2A
+HTR4	5-hydroxytryptamine receptor 4	5-hydroxytryptamine receptor 4
+HTR2C	5-hydroxytryptamine receptor 2C	5-hydroxytryptamine receptor 2C
+HTR1B	5-hydroxytryptamine receptor 1B	5-hydroxytryptamine receptor 1B
+HTR5A	5-hydroxytryptamine receptor 5A	5-hydroxytryptamine receptor 5A
+HTR6	5-hydroxytryptamine receptor 6	5-hydroxytryptamine receptor 6
+HTR3A	5-hydroxytryptamine receptor 3A	5-hydroxytryptamine receptor 3A
+HTR3B	5-hydroxytryptamine receptor 3B	5-hydroxytryptamine receptor 3B
+HTR7	5-hydroxytryptamine receptor 7	5-hydroxytryptamine receptor 7
+HTR3C	5-hydroxytryptamine receptor 3C	5-hydroxytryptamine receptor 3C
+HTR3D	5-hydroxytryptamine receptor 3D	5-hydroxytryptamine receptor 3D
+HTR3E	5-hydroxytryptamine receptor 3E	5-hydroxytryptamine receptor 3E
+HTR2B	5-hydroxytryptamine receptor 2B	5-hydroxytryptamine receptor 2B
+HTR1F	5-hydroxytryptamine receptor 1F	5-hydroxytryptamine receptor 1F
+HTR1D	5-hydroxytryptamine receptor 1D	5-hydroxytryptamine receptor 1D
+HTR1E	5-hydroxytryptamine receptor 1E	5-hydroxytryptamine receptor 1E
+GRIN2A	glutamate ionotropic receptor NMDA type subunit 2A	Glutamate receptor ionotropic, NMDA 2A
+SETD1A	SET domain containing 1A, histone lysine methyltransferase	Histone-lysine N-methyltransferase SETD1A
+GRM3	glutamate metabotropic receptor 3	Metabotropic glutamate receptor 3
+RBM12	RNA binding motif protein 12	RNA-binding protein 12
+FES	FES proto-oncogene, tyrosine kinase	Tyrosine-protein kinase Fes/Fps
+SLC39A8	solute carrier family 39 member 8	Metal cation symporter ZIP8
+NRXN1	neurexin 1	Neurexin-1-beta
+RGS6	regulator of G protein signaling 6	Regulator of G protein signaling 6
+GPM6A	glycoprotein M6A	Neuronal membrane glycoprotein M6-a
+OPRM1	opioid receptor mu 1	Mu-type opioid receptor
+OPRK1	opioid receptor kappa 1	Kappa-type opioid receptor
+TCF4	transcription factor 4	Transcription factor 4
+OPRD1	opioid receptor delta 1	Delta-type opioid receptor
+TMTC1	transmembrane O-mannosyltransferase targeting cadherins 1	Protein O-mannosyl-transferase TMTC1
+ZNF804A	zinc finger protein 804A	Zinc finger protein 804A
+PJA1	praja ring finger ubiquitin ligase 1	E3 ubiquitin-protein ligase Praja-1
+CSMD1	CUB and Sushi multiple domains 1	CUB and sushi domain-containing protein 1
+ESAM	endothelial cell adhesion molecule	Endothelial cell-selective adhesion molecule
+DRD5	dopamine receptor D5	Dopamine receptor D5
+ADRA1A	adrenoceptor alpha 1A	Alpha-1A adrenergic receptor
+ADRA1D	adrenoceptor alpha 1D	Alpha-1D adrenergic receptor
+ADRA1B	adrenoceptor alpha 1B	Alpha-1B adrenergic receptor
+CACNA1I	calcium voltage-gated channel subunit alpha1 I	Voltage-dependent T-type calcium channel subunit alpha-1I
+CHRM3	cholinergic receptor muscarinic 3	Muscarinic acetylcholine receptor M3
+DRD1	dopamine receptor D1	Dopamine receptor D1
+IGSF9B	immunoglobulin superfamily member 9B	Protein turtle homolog B
+CACNA1C	calcium voltage-gated channel subunit alpha1 C	Voltage-dependent L-type calcium channel subunit alpha-1C

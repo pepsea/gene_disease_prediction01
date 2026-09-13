@@ -1,0 +1,53 @@
+# cystinuria 用・SLC 同族を多く含む 50 遺伝子（最終段階の最難条件）
+#   正解 2（SLC3A1 / SLC7A9）＋ SLC 同族 40（いずれも OT スコア < 0.1）＋ 非 SLC 8。
+#   同族 40 は OT スコアの高い順に採ったので、最も紛らわしい並びになる。
+SLC3A1	solute carrier family 3 member 1	Amino acid transporter heavy chain SLC3A1
+SLC7A9	solute carrier family 7 member 9	b(0,+)-type amino acid transporter 1
+SLC7A13	solute carrier family 7 member 13	Solute carrier family 7 member 13
+SLC5A2	solute carrier family 5 member 2	Sodium/glucose cotransporter 2
+SLC22A12	solute carrier family 22 member 12	Solute carrier family 22 member 12
+SLC14A2	solute carrier family 14 member 2	Urea transporter 2
+SLC12A1	solute carrier family 12 member 1	Solute carrier family 12 member 1
+SLC12A3	solute carrier family 12 member 3	Solute carrier family 12 member 3
+SLC16A10	solute carrier family 16 member 10	Monocarboxylate transporter 10
+SLC2A9	solute carrier family 2 member 9	Solute carrier family 2, facilitated glucose transporter member 9
+SLC22A8	solute carrier family 22 member 8	Organic anion transporter 3
+SLC22A6	solute carrier family 22 member 6	Solute carrier family 22 member 6
+SLC6A18	solute carrier family 6 member 18	Inactive sodium-dependent neutral amino acid transporter B(0)AT3
+SLC1A1	solute carrier family 1 member 1	Excitatory amino acid transporter 3
+SLC13A2	solute carrier family 13 member 2	Solute carrier family 13 member 2
+SLC26A4	solute carrier family 26 member 4	Pendrin
+SLC15A2	solute carrier family 15 member 2	Solute carrier family 15 member 2
+SLC4A9	solute carrier family 4 member 9	Anion exchange protein 4
+SLC6A19	solute carrier family 6 member 19	Sodium-dependent neutral amino acid transporter B(0)AT1
+SLC14A1	solute carrier family 14 member 1 (Kidd blood group)	Urea transporter 1
+SLC4A11	solute carrier family 4 member 11	Solute carrier family 4 member 11
+SLC4A4	solute carrier family 4 member 4	Electrogenic sodium bicarbonate cotransporter 1
+SLC26A1	solute carrier family 26 member 1	Sulfate anion transporter 1
+SLC4A5	solute carrier family 4 member 5	Electrogenic sodium bicarbonate cotransporter 4
+SLC26A6	solute carrier family 26 member 6	Solute carrier family 26 member 6
+SLC4A8	solute carrier family 4 member 8	Electroneutral sodium bicarbonate exchanger 1
+SLC34A3	solute carrier family 34 member 3	Sodium-dependent phosphate transport protein 2C
+SLC13A1	solute carrier family 13 member 1	Solute carrier family 13 member 1
+SLC17A3	solute carrier family 17 member 3	Sodium-dependent phosphate transport protein 4
+SLC23A1	solute carrier family 23 member 1	Solute carrier family 23 member 1
+SLC46A1	solute carrier family 46 member 1	Proton-coupled folate transporter
+SLC5A10	solute carrier family 5 member 10	Sodium/mannose cotransporter SLC5A10
+SLC34A2	solute carrier family 34 member 2	Sodium-dependent phosphate transport protein 2B
+SLC39A8	solute carrier family 39 member 8	Metal cation symporter ZIP8
+SLC7A7	solute carrier family 7 member 7	Y+L amino acid transporter 1
+SLC5A1	solute carrier family 5 member 1	Sodium/glucose cotransporter 1
+SLC28A1	solute carrier family 28 member 1	Sodium/nucleoside cotransporter 1
+SLC9A3	solute carrier family 9 member A3	Sodium/hydrogen exchanger 3
+SLC22A5	solute carrier family 22 member 5	Organic cation/carnitine transporter 2
+SLC38A3	solute carrier family 38 member 3	Sodium-coupled neutral amino acid transporter 3
+SLC1A5	solute carrier family 1 member 5	Neutral amino acid transporter B(0)
+SLC22A4	solute carrier family 22 member 4	Solute carrier family 22 member 4
+OTC	ornithine transcarbamylase	Ornithine transcarbamylase, mitochondrial
+UMOD	uromodulin	Uromodulin
+CLCN5	Cl-/H+ antiporter 5	H(+)/Cl(-) exchange transporter 5
+GRHPR	glyoxylate and hydroxypyruvate reductase	Glyoxylate reductase/hydroxypyruvate reductase
+AGXT	alanine--glyoxylate aminotransferase	Alanine--glyoxylate aminotransferase
+CLDN2	claudin 2	Claudin-2
+LAMA5	laminin subunit alpha 5	Laminin subunit alpha-5
+WNK4	WNK lysine deficient protein kinase 4	Serine/threonine-protein kinase WNK4

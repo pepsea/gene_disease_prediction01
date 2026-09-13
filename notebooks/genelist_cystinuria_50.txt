@@ -1,0 +1,54 @@
+# cystinuria 用の候補リスト（50 遺伝子・最終段階の検証用）
+# Open Targets (MONDO_0009067) の関連スコア上位 50。全て疾患関連候補なので、
+# 「生き残った候補どうしの比較」という最も難しい条件になる。
+# 形式: 記号<TAB>HGNC正式名<TAB>UniProt推奨タンパク質名
+SLC3A1	solute carrier family 3 member 1	Amino acid transporter heavy chain SLC3A1
+SLC7A9	solute carrier family 7 member 9	b(0,+)-type amino acid transporter 1
+PREPL	prolyl endopeptidase like	Prolyl endopeptidase-like
+CEP89	centrosomal protein 89	Centrosomal protein of 89 kDa
+CENPF	centromere protein F	Centromere protein F
+SLC7A13	solute carrier family 7 member 13	Solute carrier family 7 member 13
+SLC5A2	solute carrier family 5 member 2	Sodium/glucose cotransporter 2
+OTC	ornithine transcarbamylase	Ornithine transcarbamylase, mitochondrial
+UMOD	uromodulin	Uromodulin
+CLCN5	Cl-/H+ antiporter 5	H(+)/Cl(-) exchange transporter 5
+GRHPR	glyoxylate and hydroxypyruvate reductase	Glyoxylate reductase/hydroxypyruvate reductase
+AGXT	alanine--glyoxylate aminotransferase	Alanine--glyoxylate aminotransferase
+SLC22A12	solute carrier family 22 member 12	Solute carrier family 22 member 12
+SLC14A2	solute carrier family 14 member 2	Urea transporter 2
+CLDN2	claudin 2	Claudin-2
+SLC12A1	solute carrier family 12 member 1	Solute carrier family 12 member 1
+SLC12A3	solute carrier family 12 member 3	Solute carrier family 12 member 3
+SLC16A10	solute carrier family 16 member 10	Monocarboxylate transporter 10
+LAMA5	laminin subunit alpha 5	Laminin subunit alpha-5
+WNK4	WNK lysine deficient protein kinase 4	Serine/threonine-protein kinase WNK4
+COL4A4	collagen type IV alpha 4 chain	Collagen alpha-4(IV) chain
+APRT	adenine phosphoribosyltransferase	Adenine phosphoribosyltransferase
+ADCY6	adenylate cyclase 6	Adenylate cyclase type 6
+TRPV5	transient receptor potential cation channel subfamily V member 5	Transient receptor potential cation channel subfamily V member 5
+AQP2	aquaporin 2	Aquaporin-2
+PTGS2	prostaglandin-endoperoxide synthase 2	Prostaglandin G/H synthase 2
+COL4A3	collagen type IV alpha 3 chain	Collagen alpha-3(IV) chain
+SLC2A9	solute carrier family 2 member 9	Solute carrier family 2, facilitated glucose transporter member 9
+PKD1	polycystin 1, transient receptor potential channel interacting	Polycystin-1
+HAL	histidine ammonia-lyase	Histidine ammonia-lyase
+ABCG2	ATP binding cassette subfamily G member 2 (JR blood group)	Broad substrate specificity ATP-binding cassette transporter ABCG2
+KLHL2	kelch like family member 2	Kelch-like protein 2
+ACE	angiotensin I converting enzyme	Angiotensin-converting enzyme
+UOX	urate oxidase (pseudogene)	
+AKR1B1	aldo-keto reductase family 1 member B	Aldo-keto reductase family 1 member B1
+SLC22A8	solute carrier family 22 member 8	Organic anion transporter 3
+STK39	serine/threonine kinase 39	STE20/SPS1-related proline-alanine-rich protein kinase
+INSR	insulin receptor	Insulin receptor
+AQP7	aquaporin 7	Aquaporin-7
+AQP7B	aquaporin 7B	Putative aquaporin-7B
+AQP7P3	aquaporin 7 pseudogene 3	
+ADORA1	adenosine A1 receptor	Adenosine receptor A1
+CEBPD	CCAAT enhancer binding protein delta	CCAAT/enhancer-binding protein delta
+SGK1	serum/glucocorticoid regulated kinase 1	Serine/threonine-protein kinase Sgk1
+GCK	glucokinase	Hexokinase-4
+CYP4A11	cytochrome P450 family 4 subfamily A member 11	Cytochrome P450 4A11
+CYP4A22	cytochrome P450 family 4 subfamily A member 22	Cytochrome P450 4A22
+AQP11	aquaporin 11	Aquaporin-11
+ATP6V1B1	ATPase H+ transporting V1 subunit B1	V-type proton ATPase subunit B, kidney isoform
+COL4A5	collagen type IV alpha 5 chain	Collagen alpha-5(IV) chain
