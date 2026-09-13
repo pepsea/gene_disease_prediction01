@@ -11,8 +11,13 @@ stage2*.jsonl
 stage_results.jsonl
 gene_scores*.csv
 gene_scores*.jsonl
+*_ranking.csv
+*_scores.csv
 neutral*.npz
 
 # Local database dumps (large, licence-bound — do not commit)
 data/
 hgnc_complete_set*.txt
+
+# 実行ごとの出力（再生成できる）
+outputs/
