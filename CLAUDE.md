@@ -129,6 +129,24 @@ against explicitly:
 Temperature is 0 everywhere, so a repeated run returns an identical answer.
 Repeats only mean something if the candidate order is reshuffled between them.
 
+`notebooks/gene_disease_ranking02.ipynb` (the disease-mechanism format) has its own
+section at the end of `EXPERIMENTS.md` ("ノートブック 02"), with three things to know
+before touching it:
+
+- **The top of the ranking is decided by how the mechanism is written.** Swapping one
+  medically valid description for another moved C4A from 0.96 to 0.00 and DRD2 from
+  0.27 to 0.89, and gemma3:27b reproduces the pattern (+0.83 rank agreement). Treat a
+  single run as "genes that fit this description", not "genes for this disease".
+  The swing lives in the comparative stages (0.5 onward); stage 0 barely cares — all
+  11 schizophrenia answers stayed in the top 10% under all three descriptions.
+- **Several fixes are already measured and rejected** there: a Yes/No/Unknown stage 0,
+  protein names or aliases in stage 0, disease-name-only questions, AND-phrased steps,
+  "indirect involvement" wording. Aliases are also a hazard in their own right: 590
+  of them are another gene's official symbol.
+- **What the model does not know cannot be prompted out of it.** CHRM4 (xanomeline's
+  target) stays near the bottom under every wording, description and a second model.
+  Use the output to check known targets, not as a primary screen for new ones.
+
 ## Ollama on this machine
 
 VRAM is 17.8 GiB — `gemma3:27b` (~15GB) and `qwen3:14b` (10GB) cannot both be
